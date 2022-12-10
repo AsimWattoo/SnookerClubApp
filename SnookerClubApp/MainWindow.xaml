@@ -54,11 +54,11 @@
                                                 VerticalAlignment="Center">
                                         <TextBlock Text="{Binding Title}"
                                                    Foreground="#d33834"
-                                                   FontSize="25"
+                                                   FontSize="35"
                                                    FontWeight="Bold"/>
                                         <TextBlock Text="{Binding SubTitle}"
                                                    Foreground="#d33834"
-                                                   FontSize="16"
+                                                   FontSize="24"
                                                    FontWeight="light"/>
                                     </StackPanel>
 

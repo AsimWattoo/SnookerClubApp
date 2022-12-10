@@ -32,7 +32,7 @@ namespace SnookerClubApp.ViewModels
         /// <summary>
         /// The height of the caption
         /// </summary>
-        public double CaptionHeight { get; set; } = 60;
+        public double CaptionHeight { get; set; } = 80;
 
         /// <summary>
         /// Manages the resizing of the custom window

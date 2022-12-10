@@ -19,6 +19,8 @@ namespace SnookerClubApp.Converters
             {
                 case ApplicationPages.Home:
                     return new Home();
+                case ApplicationPages.TableDetails:
+                    return new TableDetails();
                 default:
                     return new DefaultPage();
             }
@@ -32,9 +34,13 @@ namespace SnookerClubApp.Converters
         /// <returns></returns>
         public static ApplicationPages ToApplicationPage(this BasePage page)
         {
-            if(page is Home h)
+            if(page is Home)
             {
                 return ApplicationPages.Home;
+            }
+            else if(page is TableDetails) 
+            {
+                return ApplicationPages.TableDetails;
             }
             return ApplicationPages.None;
         }

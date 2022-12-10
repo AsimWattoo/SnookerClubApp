@@ -48,6 +48,7 @@
     <system:String x:Key="LogoutIcon">&#xf023;</system:String>
     <system:String x:Key="EyeIcon">&#xf06e;</system:String>
     <system:String x:Key="ReportsIcon">&#xf46d;</system:String>
-    <system:String x:Key="AngleLeftIcon">&#xf105;</system:String>
+    <system:String x:Key="AngleRightIcon">&#xf105;</system:String>
+    <system:String x:Key="ArrowLeftIcon">&#xf060;</system:String>
 
 </ResourceDictionary>

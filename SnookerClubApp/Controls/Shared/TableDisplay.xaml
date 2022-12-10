@@ -10,24 +10,27 @@
              Margin="10"
              MaxHeight="220"
              MaxWidth="260">
-    <Grid Background="White" Cursor="Hand">
+
+
+
+    <Grid Background="White" Cursor="Hand" MouseDown="Grid_MouseDown">
 
         <Grid.RenderTransform>
-            <ScaleTransform ScaleX="1" ScaleY="1" x:Name="gridTansform"/>
+            <ScaleTransform ScaleX="1" ScaleY="1" x:Name="transform"/>
         </Grid.RenderTransform>
-        
+
         <Grid.Triggers>
             <EventTrigger RoutedEvent="MouseEnter">
                 <BeginStoryboard>
                     <Storyboard>
                         <DoubleAnimation Duration="0:0:0.2"
-                                         To="1.02"
-                                         Storyboard.TargetProperty="ScaleX"
-                                         Storyboard.TargetName="gridTansform"/>
+                                        To="1.02"
+                                        Storyboard.TargetProperty="ScaleX"
+                                        Storyboard.TargetName="transform"/>
                         <DoubleAnimation Duration="0:0:0.2"
-                                         To="1.02"
-                                         Storyboard.TargetProperty="ScaleY"
-                                         Storyboard.TargetName="gridTansform"/>
+                                        To="1.02"
+                                        Storyboard.TargetProperty="ScaleY"
+                                        Storyboard.TargetName="transform"/>
                     </Storyboard>
                 </BeginStoryboard>
             </EventTrigger>
@@ -35,27 +38,27 @@
                 <BeginStoryboard>
                     <Storyboard>
                         <DoubleAnimation Duration="0:0:0.2"
-                                         To="1"
-                                         Storyboard.TargetProperty="ScaleX"
-                                         Storyboard.TargetName="gridTansform"/>
+                                        To="1"
+                                        Storyboard.TargetProperty="ScaleX"
+                                        Storyboard.TargetName="transform"/>
                         <DoubleAnimation Duration="0:0:0.2"
-                                         To="1"
-                                         Storyboard.TargetProperty="ScaleY"
-                                         Storyboard.TargetName="gridTansform"/>
+                                        To="1"
+                                        Storyboard.TargetProperty="ScaleY"
+                                        Storyboard.TargetName="transform"/>
                     </Storyboard>
                 </BeginStoryboard>
             </EventTrigger>
         </Grid.Triggers>
 
-        <Border CornerRadius="5" Background="White">
+        <Border CornerRadius="20" Background="White">
             <Border.Effect>
-                <DropShadowEffect BlurRadius="5" 
-                              ShadowDepth="0"
-                              Opacity="0.4"/>
+                <DropShadowEffect BlurRadius="30" 
+                            ShadowDepth="2"
+                            Opacity="0.1"/>
             </Border.Effect>
         </Border>
-        
-        <Grid>
+
+        <Grid Margin="0 0 0 10">
             <Grid.RowDefinitions>
                 <RowDefinition Height="2*"/>
                 <RowDefinition Height="*"/>
@@ -63,27 +66,27 @@
             </Grid.RowDefinitions>
 
             <TextBlock Text="Table 1" 
-                       HorizontalAlignment="Center"
-                       VerticalAlignment="Center"
-                       FontWeight="SemiBold"
-                       FontSize="30"/>
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontWeight="SemiBold"
+                    FontSize="30"/>
 
             <TextBlock Grid.Row="1"
-                       Text="£4.5/hr"
-                       VerticalAlignment="Center"
-                       HorizontalAlignment="Center"
-                       FontSize="20"
-                       FontWeight="light"/>
-
-            <Border Grid.Row="2"
+                    Text="£4.5/hr"
                     VerticalAlignment="Center"
                     HorizontalAlignment="Center"
-                    Padding="15 3"
-                    CornerRadius="15">
+                    FontSize="20"
+                    FontWeight="light"/>
+
+            <Border Grid.Row="2"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center"
+                Padding="15 3"
+                CornerRadius="15">
                 <Border.Background>
-                    <SolidColorBrush Color="#a0201f" Opacity="0.3"/>
+                    <SolidColorBrush Color="#e5464b" Opacity="0.1"/>
                 </Border.Background>
-                <TextBlock Text="Occupied" FontSize="20" Foreground="#a0201f"/> 
+                <TextBlock Text="Occupied" FontSize="20" Foreground="#e5464b"/>
             </Border>
         </Grid>
     </Grid>

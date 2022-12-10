@@ -3,6 +3,7 @@
     public enum ApplicationPages
     {
         None,
-        Home
+        Home,
+        TableDetails
     }
 }
