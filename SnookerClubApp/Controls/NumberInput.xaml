@@ -1,0 +1,122 @@
+﻿<UserControl x:Class="SnookerClubApp.NumberInput"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SnookerClubApp"
+             mc:Ignorable="d" 
+             d:DesignHeight="30" d:DesignWidth="100"
+             x:Name="Root">
+    <Border BorderThickness="1"
+            BorderBrush="#eee"
+            CornerRadius="5">
+        <Grid Background="White">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBox Text="{Binding Time, ElementName=Root}" 
+                     HorizontalAlignment="Center"
+                     VerticalAlignment="Center"
+                     BorderThickness="0"
+                     Background="White"
+                     FontSize="20"
+                     Margin="10 0"
+                     KeyDown="TextBox_KeyDown"
+                     PreviewTextInput="TextBox_PreviewTextInput"
+                     TextChanged="TextBox_TextChanged"/>
+
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Border Margin="5 1"
+                        Padding="3 2"
+                        Background="#eee"
+                        CornerRadius="2"
+                        Cursor="Hand"
+                        x:Name="btnUp"
+                        MouseDown="btnUp_MouseDown">
+                    <Border.Triggers>
+                        <EventTrigger RoutedEvent="MouseEnter">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation Duration="0:0:0.2"
+                                                    To="Gray"
+                                                    Storyboard.TargetProperty="Background.Color"/>
+                                    <ColorAnimation Duration="0:0:0.2"
+                                                    To="White"
+                                                    Storyboard.TargetName="upBtnText"
+                                                    Storyboard.TargetProperty="Foreground.Color"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                        <EventTrigger RoutedEvent="MouseLeave">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation Duration="0:0:0.2"
+                                                    To="#eee"
+                                                    Storyboard.TargetProperty="Background.Color"/>
+                                    <ColorAnimation Duration="0:0:0.2"
+                                                    To="black"
+                                                    Storyboard.TargetName="upBtnText"
+                                                    Storyboard.TargetProperty="Foreground.Color"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </Border.Triggers>
+                    <TextBlock Text="{StaticResource AngleUpIcon}"
+                               VerticalAlignment="Center"
+                               x:Name="upBtnText"
+                               FontFamily="{StaticResource FontAwesome_Solid}"/>
+                </Border>
+
+                <Border Margin="5 1"
+                        Padding="3 2"
+                        Grid.Row="1"
+                        Background="#eee"
+                        CornerRadius="2"
+                        x:Name="btnDown"
+                        MouseDown="btnDown_MouseDown"
+                        Cursor="Hand">
+                    <Border.Triggers>
+                        <EventTrigger RoutedEvent="MouseEnter">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation Duration="0:0:0.2"
+                                                    To="Gray"
+                                                    Storyboard.TargetProperty="Background.Color"/>
+                                    <ColorAnimation Duration="0:0:0.2"
+                                                    To="White"
+                                                    Storyboard.TargetName="downBtnText"
+                                                    Storyboard.TargetProperty="Foreground.Color"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                        <EventTrigger RoutedEvent="MouseLeave">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation Duration="0:0:0.2"
+                                                    To="#eee"
+                                                    Storyboard.TargetProperty="Background.Color"/>
+                                    <ColorAnimation Duration="0:0:0.2"
+                                                    To="black"
+                                                    Storyboard.TargetName="downBtnText"
+                                                    Storyboard.TargetProperty="Foreground.Color"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </Border.Triggers>
+                    <TextBlock Text="{StaticResource AngleDownIcon}"
+                               VerticalAlignment="Center"
+                               x:Name="downBtnText"
+                               FontFamily="{StaticResource FontAwesome_Solid}"/>
+                </Border>
+            </Grid>
+
+        </Grid>
+    </Border>
+</UserControl>

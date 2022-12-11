@@ -15,6 +15,7 @@
     <system:String x:Key="WindowRestoreIcon">&#xf2d2;</system:String>
     <system:String x:Key="LeftArrowIcon">&#xf060;</system:String>
     <system:String x:Key="AngleUpIcon">&#xf106;</system:String>
+    <system:String x:Key="AngleDownIcon">&#xf107;</system:String>
     <system:String x:Key="DeleteIcon">&#xf2ed;</system:String>
     <system:String x:Key="EditIcon">&#xf044;</system:String>
     <system:String x:Key="CogIcon">&#xf013;</system:String>

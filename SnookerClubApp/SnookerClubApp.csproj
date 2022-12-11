@@ -12,6 +12,18 @@
     <None Remove="Data\Fonts\fa-brands-400.ttf" />
     <None Remove="Data\Fonts\fa-regular-400.ttf" />
     <None Remove="Data\Fonts\fa-solid-900.ttf" />
+    <None Remove="Data\Images\play.png" />
+    <None Remove="Data\Images\Settings.png" />
+    <None Remove="Data\Images\stop.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Data\Images\play.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Data\Images\Settings.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
   <ItemGroup>
@@ -22,6 +34,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Data\Fonts\fa-solid-900.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Data\Images\stop.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>

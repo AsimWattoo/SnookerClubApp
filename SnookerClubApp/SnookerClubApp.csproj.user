@@ -7,6 +7,9 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="Controls\NumberInput.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Controls\Shared\TableDisplay.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -22,6 +25,9 @@
   </ItemGroup>
   <ItemGroup>
     <Page Update="Controls\Navigator.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Controls\NumberInput.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Controls\Shared\TableDisplay.xaml">

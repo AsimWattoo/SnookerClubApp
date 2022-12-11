@@ -8,7 +8,8 @@
              d:DesignWidth="450"
              Height="30"
              Margin="0 0 0 20">
-    <Grid Background="White" >
+    <Border Background="White" 
+            CornerRadius="5">
         <Border Background="White"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Center"
@@ -22,5 +23,5 @@
                    HorizontalAlignment="Left"
                    FontSize="20"/>
         </Border>
-    </Grid>
+    </Border>
 </UserControl>
