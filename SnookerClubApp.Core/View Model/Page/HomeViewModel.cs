@@ -28,6 +28,12 @@ namespace SnookerClubApp.Core.View_Model.Page
 
         #endregion
 
+        #region Private Members
+
+        private int Number = 6;
+
+        #endregion
+
         #region Constructor
 
         /// <summary>
@@ -46,7 +52,11 @@ namespace SnookerClubApp.Core.View_Model.Page
             });
             AddCommand = new RelayCommand(() => 
             {
-                
+                Tables.Add(new Table()
+                {
+                    Number = Number++,
+                    CurrentDayRate = 43,
+                });
             });
         }
 

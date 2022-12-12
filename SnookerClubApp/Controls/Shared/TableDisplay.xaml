@@ -6,10 +6,9 @@
              xmlns:local="clr-namespace:SnookerClubApp"
              mc:Ignorable="d" 
              d:DesignWidth="200"
-             d:DesignHeight="180"
              Margin="10"
              xmlns:converter="clr-namespace:SnookerClubApp.Converters"
-             MaxHeight="250"
+             Height="200"
              MaxWidth="260">
 
     <Grid Background="White" Cursor="Hand" MouseDown="Grid_MouseDown">
