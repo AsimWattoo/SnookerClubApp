@@ -3,6 +3,7 @@ D:\Work\Programming\Visual Studio 2022\C#\.Net Framework\WPF\SnookerClubApp\Snoo
 D:\Work\Programming\Visual Studio 2022\C#\.Net Framework\WPF\SnookerClubApp\SnookerClubApp\bin\Debug\net6.0-windows\SnookerClubApp.runtimeconfig.json
 D:\Work\Programming\Visual Studio 2022\C#\.Net Framework\WPF\SnookerClubApp\SnookerClubApp\bin\Debug\net6.0-windows\SnookerClubApp.dll
 D:\Work\Programming\Visual Studio 2022\C#\.Net Framework\WPF\SnookerClubApp\SnookerClubApp\bin\Debug\net6.0-windows\SnookerClubApp.pdb
+D:\Work\Programming\Visual Studio 2022\C#\.Net Framework\WPF\SnookerClubApp\SnookerClubApp\bin\Debug\net6.0-windows\Newtonsoft.Json.dll
 D:\Work\Programming\Visual Studio 2022\C#\.Net Framework\WPF\SnookerClubApp\SnookerClubApp\bin\Debug\net6.0-windows\SnookerClubApp.Core.dll
 D:\Work\Programming\Visual Studio 2022\C#\.Net Framework\WPF\SnookerClubApp\SnookerClubApp\bin\Debug\net6.0-windows\SnookerClubApp.Core.pdb
 D:\Work\Programming\Visual Studio 2022\C#\.Net Framework\WPF\SnookerClubApp\SnookerClubApp\obj\Debug\net6.0-windows\SnookerClubApp.csproj.AssemblyReference.cache
@@ -10,6 +11,7 @@ D:\Work\Programming\Visual Studio 2022\C#\.Net Framework\WPF\SnookerClubApp\Snoo
 D:\Work\Programming\Visual Studio 2022\C#\.Net Framework\WPF\SnookerClubApp\SnookerClubApp\obj\Debug\net6.0-windows\Styles\Texts.baml
 D:\Work\Programming\Visual Studio 2022\C#\.Net Framework\WPF\SnookerClubApp\SnookerClubApp\obj\Debug\net6.0-windows\App.baml
 D:\Work\Programming\Visual Studio 2022\C#\.Net Framework\WPF\SnookerClubApp\SnookerClubApp\obj\Debug\net6.0-windows\Controls\Navigator.g.cs
+D:\Work\Programming\Visual Studio 2022\C#\.Net Framework\WPF\SnookerClubApp\SnookerClubApp\obj\Debug\net6.0-windows\Controls\NumberInput.g.cs
 D:\Work\Programming\Visual Studio 2022\C#\.Net Framework\WPF\SnookerClubApp\SnookerClubApp\obj\Debug\net6.0-windows\Controls\Shared\TableDisplay.g.cs
 D:\Work\Programming\Visual Studio 2022\C#\.Net Framework\WPF\SnookerClubApp\SnookerClubApp\obj\Debug\net6.0-windows\Controls\TopBar.g.cs
 D:\Work\Programming\Visual Studio 2022\C#\.Net Framework\WPF\SnookerClubApp\SnookerClubApp\obj\Debug\net6.0-windows\MainWindow.g.cs
@@ -21,6 +23,7 @@ D:\Work\Programming\Visual Studio 2022\C#\.Net Framework\WPF\SnookerClubApp\Snoo
 D:\Work\Programming\Visual Studio 2022\C#\.Net Framework\WPF\SnookerClubApp\SnookerClubApp\obj\Debug\net6.0-windows\SnookerClubApp_MarkupCompile.cache
 D:\Work\Programming\Visual Studio 2022\C#\.Net Framework\WPF\SnookerClubApp\SnookerClubApp\obj\Debug\net6.0-windows\SnookerClubApp_MarkupCompile.lref
 D:\Work\Programming\Visual Studio 2022\C#\.Net Framework\WPF\SnookerClubApp\SnookerClubApp\obj\Debug\net6.0-windows\Controls\Navigator.baml
+D:\Work\Programming\Visual Studio 2022\C#\.Net Framework\WPF\SnookerClubApp\SnookerClubApp\obj\Debug\net6.0-windows\Controls\NumberInput.baml
 D:\Work\Programming\Visual Studio 2022\C#\.Net Framework\WPF\SnookerClubApp\SnookerClubApp\obj\Debug\net6.0-windows\Controls\Shared\TableDisplay.baml
 D:\Work\Programming\Visual Studio 2022\C#\.Net Framework\WPF\SnookerClubApp\SnookerClubApp\obj\Debug\net6.0-windows\Controls\TopBar.baml
 D:\Work\Programming\Visual Studio 2022\C#\.Net Framework\WPF\SnookerClubApp\SnookerClubApp\obj\Debug\net6.0-windows\MainWindow.baml
@@ -42,5 +45,3 @@ D:\Work\Programming\Visual Studio 2022\C#\.Net Framework\WPF\SnookerClubApp\Snoo
 D:\Work\Programming\Visual Studio 2022\C#\.Net Framework\WPF\SnookerClubApp\SnookerClubApp\obj\Debug\net6.0-windows\SnookerClubApp.pdb
 D:\Work\Programming\Visual Studio 2022\C#\.Net Framework\WPF\SnookerClubApp\SnookerClubApp\obj\Debug\net6.0-windows\SnookerClubApp.genruntimeconfig.cache
 D:\Work\Programming\Visual Studio 2022\C#\.Net Framework\WPF\SnookerClubApp\SnookerClubApp\obj\Debug\net6.0-windows\ref\SnookerClubApp.dll
-D:\Work\Programming\Visual Studio 2022\C#\.Net Framework\WPF\SnookerClubApp\SnookerClubApp\obj\Debug\net6.0-windows\Controls\NumberInput.g.cs
-D:\Work\Programming\Visual Studio 2022\C#\.Net Framework\WPF\SnookerClubApp\SnookerClubApp\obj\Debug\net6.0-windows\Controls\NumberInput.baml

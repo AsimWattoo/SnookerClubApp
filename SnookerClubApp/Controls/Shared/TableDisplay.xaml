@@ -8,10 +8,9 @@
              d:DesignWidth="200"
              d:DesignHeight="180"
              Margin="10"
-             MaxHeight="220"
+             xmlns:converter="clr-namespace:SnookerClubApp.Converters"
+             MaxHeight="250"
              MaxWidth="260">
-
-
 
     <Grid Background="White" Cursor="Hand" MouseDown="Grid_MouseDown">
 
@@ -65,14 +64,20 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <TextBlock Text="Table 1" 
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    FontWeight="SemiBold"
-                    FontSize="30"/>
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center">
+                <TextBlock Text="Table" 
+                           FontWeight="SemiBold"
+                           FontSize="30"/>
+                <TextBlock Text="{Binding Number}"
+                           Margin="5 0 0 0"
+                           FontWeight="SemiBold"
+                           FontSize="30"/>
+            </StackPanel>
 
             <TextBlock Grid.Row="1"
-                    Text="£4.5/hr"
+                    Text="{Binding CurrentDayRate, Converter={converter:PriceConverter}}"
                     VerticalAlignment="Center"
                     HorizontalAlignment="Center"
                     FontSize="20"
@@ -84,9 +89,9 @@
                 Padding="15 3"
                 CornerRadius="15">
                 <Border.Background>
-                    <SolidColorBrush Color="#e5464b" Opacity="0.1"/>
+                    <SolidColorBrush Color="{Binding Status, Converter={converter:TableStatusToColorConverter}}" Opacity="0.1"/>
                 </Border.Background>
-                <TextBlock Text="Occupied" FontSize="20" Foreground="#e5464b"/>
+                <TextBlock Text="{Binding Status}" FontSize="20" Foreground="{Binding Status, Converter={converter:TableStatusToBrushConverter}}"/>
             </Border>
         </Grid>
     </Grid>

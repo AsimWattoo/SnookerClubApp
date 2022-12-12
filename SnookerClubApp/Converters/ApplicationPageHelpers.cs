@@ -1,6 +1,6 @@
 ﻿using SnookerClubApp.Core.Application;
 using SnookerClubApp.Core.View_Model.Base;
-
+using SnookerClubApp.Core.View_Model.Page;
 using SnookerClubApp.Pages;
 
 namespace SnookerClubApp.Converters
@@ -13,12 +13,15 @@ namespace SnookerClubApp.Converters
         /// </summary>
         /// <param name="page"></param>
         /// <returns></returns>
-        public static BasePage ToBasePage(this ApplicationPages page, BaseViewModel viewModel = null)
+        public static BasePage ToBasePage(this ApplicationPages page, BaseViewModel? viewModel = null)
         {
             switch (page)
             {
                 case ApplicationPages.Home:
-                    return new Home();
+                    if (viewModel == null)
+                        return new Home();
+                    else
+                        return new Home(viewModel as HomeViewModel ?? new HomeViewModel());
                 case ApplicationPages.TableDetails:
                     return new TableDetails();
                 default:
