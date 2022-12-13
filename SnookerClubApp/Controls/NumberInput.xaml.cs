@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net.NetworkInformation;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
@@ -192,6 +193,7 @@ namespace SnookerClubApp
                 return;
             }
             string text = textBox.Text;
+
             //parsing text
             string number = text.Replace(Suffix, "");
             int time = string.IsNullOrEmpty(number) ? 0 : int.Parse(number);
@@ -199,6 +201,11 @@ namespace SnookerClubApp
                 textBox.Text = _previousText;
             else
                 Number = time;
+
+            if (!text.EndsWith(Suffix))
+            {
+                textBox.Text += Suffix;
+            }
         }
 
         #endregion

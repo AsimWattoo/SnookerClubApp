@@ -37,6 +37,9 @@ namespace SnookerClubApp
             if (data == null)
                 data = new ApplicationData();
             IoC.RegisterStatic<ApplicationData>(data);
+            TimeManager timeManager = new TimeManager();
+            timeManager.Start();
+            IoC.RegisterStatic<TimeManager>(timeManager);
         }
 
         protected override void OnExit(ExitEventArgs e)

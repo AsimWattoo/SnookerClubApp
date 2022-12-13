@@ -1,5 +1,6 @@
 ﻿using SnookerClubApp.Core.Enum;
 
+using System;
 using System.Collections.Generic;
 
 namespace SnookerClubApp.Core.View_Model
@@ -22,6 +23,21 @@ namespace SnookerClubApp.Core.View_Model
         /// The rate of the table
         /// </summary>
         public double CurrentDayRate { get; set; }
+
+        /// <summary>
+        /// The number of hours for timer
+        /// </summary>
+        public double Hours { get; set; }
+
+        /// <summary>
+        /// The number of minutes for timer
+        /// </summary>
+        public double Minutes { get; set; }
+
+        /// <summary>
+        /// Indicates whether the timer has limit or not
+        /// </summary>
+        public bool IsFixed { get; set; } = false;
 
         /// <summary>
         /// The weekly rates for a table

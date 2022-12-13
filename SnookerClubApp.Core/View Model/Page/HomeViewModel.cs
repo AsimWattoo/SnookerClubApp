@@ -1,9 +1,12 @@
-﻿using SnookerClubApp.Core.Enum;
+﻿using SnookerClubApp.Core.Application;
+using SnookerClubApp.Core.Enum;
 using SnookerClubApp.Core.IoCContainer;
 using SnookerClubApp.Core.View_Model.Base;
 
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.Security.Cryptography;
 using System.Windows.Input;
 
 namespace SnookerClubApp.Core.View_Model.Page
@@ -30,7 +33,7 @@ namespace SnookerClubApp.Core.View_Model.Page
 
         #region Private Members
 
-        private int Number = 6;
+        private int Number = 1;
 
         #endregion
 
@@ -42,21 +45,18 @@ namespace SnookerClubApp.Core.View_Model.Page
         public HomeViewModel()
         {
             ApplicationData data = IoC.Get<ApplicationData>();
-            Tables = new ObservableCollection<Table>(new List<Table>()
-            {
-                new Table(){ Number = 1, CurrentDayRate= 4.5, Status=TableStatus.Occuppied },
-                new Table(){ Number = 2, CurrentDayRate = 2.4 },
-                new Table(){ Number = 3, CurrentDayRate = 29.23 },
-                new Table(){ Number = 4, CurrentDayRate = 23.0 },
-                new Table(){ Number = 5, CurrentDayRate = 23 },
-            });
+            Tables = new ObservableCollection<Table>(data.Tables);
+            if (data.Tables.Count > 0)
+                Number = data.Tables.OrderByDescending(f => f.Number).First().Number + 1;
             AddCommand = new RelayCommand(() => 
             {
-                Tables.Add(new Table()
+                Table t = new Table()
                 {
                     Number = Number++,
-                    CurrentDayRate = 43,
-                });
+                    CurrentDayRate = 0,
+                };
+                data.Tables.Add(t);
+                Tables.Add(t);
             });
         }
 

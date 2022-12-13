@@ -23,7 +23,10 @@ namespace SnookerClubApp.Converters
                     else
                         return new Home(viewModel as HomeViewModel ?? new HomeViewModel());
                 case ApplicationPages.TableDetails:
-                    return new TableDetails();
+                    if (viewModel == null)
+                        return new TableDetails();
+                    else
+                        return new TableDetails(viewModel as TableDetailsViewModel ?? new TableDetailsViewModel());
                 default:
                     return new DefaultPage();
             }

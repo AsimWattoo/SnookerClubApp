@@ -1,11 +1,14 @@
 ﻿<local:BasePage x:Class="SnookerClubApp.TableDetails"
+                x:TypeArguments="core:TableDetailsViewModel"
                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
                 xmlns:local="clr-namespace:SnookerClubApp"
+                xmlns:converter="clr-namespace:SnookerClubApp.Converters"
                 xmlns:syncfusion="http://schemas.syncfusion.com/wpf"
                 mc:Ignorable="d" 
+                xmlns:core="clr-namespace:SnookerClubApp.Core.View_Model.Page;assembly=SnookerClubApp.Core"
                 d:DesignHeight="600" d:DesignWidth="800"
                 Title="TableDetails">
 
@@ -83,7 +86,7 @@
                                 <TextBlock Text="Table"
                                            Style="{StaticResource DetailsHeader}"/>
 
-                                <TextBlock Text="1"
+                                <TextBlock Text="{Binding Table.Number}"
                                            Grid.Row="1"
                                            Style="{StaticResource DetailsItem}"/>
 
@@ -91,7 +94,7 @@
                                            Grid.Column="1"
                                            Style="{StaticResource DetailsHeader}"/>
 
-                                <TextBlock Text="£4.5/hr"
+                                <TextBlock Text="{Binding Table.CurrentDayRate, Converter={converter:PriceConverter}}"
                                            Grid.Row="1"
                                            Grid.Column="1"
                                            Style="{StaticResource DetailsItem}"/>
@@ -107,16 +110,16 @@
                                         Padding="15 3"
                                         CornerRadius="15">
                                     <Border.Background>
-                                        <SolidColorBrush Color="#e5464b" Opacity="0.3"/>
+                                        <SolidColorBrush Color="{Binding Table.Status, Converter={converter:TableStatusToColorConverter}}" Opacity="0.1"/>
                                     </Border.Background>
-                                    <TextBlock Text="Occupied" FontSize="20" Foreground="#e5464b"/>
+                                    <TextBlock Text="{Binding Table.Status}" FontSize="20" Foreground="{Binding Table.Status, Converter={converter:TableStatusToBrushConverter}}"/>
                                 </Border>
 
                                 <TextBlock Text="Timer"
                                            Grid.Column="3"
                                            Style="{StaticResource DetailsHeader}"/>
 
-                                <TextBlock Text="0:00:00"
+                                <TextBlock Text="{Binding TimerText}"
                                            Grid.Row="1"
                                            Grid.Column="3"
                                            Style="{StaticResource TimerDisplay}"/>
@@ -173,39 +176,85 @@
                                                FontSize="17">
                                         Timer
                                     </TextBlock>
-                                    <local:NumberInput Margin="10 0 0 0"
-                                                       Number="0"
-                                                       Min="0"
-                                                       Suffix="h"/>
+                                    <StackPanel>
+                                        <local:NumberInput Margin="10 0 0 0"
+                                                           Number="{Binding Table.Hours, Mode=TwoWay}"
+                                                           Min="0"
+                                                           Suffix="h"/>
+                                        <TextBlock HorizontalAlignment="Center"
+                                                   FontSize="15"
+                                                   Margin="0 5 0 0">
+                                            Hours
+                                        </TextBlock>
+                                    </StackPanel>
 
-                                    <local:NumberInput Margin="10 0 0 0"
-                                                       Number="0"
+                                    <StackPanel>
+                                        <local:NumberInput Margin="10 0 0 0"
+                                                       Number="{Binding Table.Minutes, Mode=TwoWay}"
                                                        Min="0"
                                                        Max="60"
                                                        Suffix="m"/>
+                                        <TextBlock HorizontalAlignment="Center"
+                                                   FontSize="15"
+                                                   Margin="0 5 0 0 ">
+                                            Minutes
+                                        </TextBlock>
+                                    </StackPanel>
                                 </StackPanel>
 
                                 <StackPanel Grid.Column="2"
                                             HorizontalAlignment="Center"
                                             VerticalAlignment="Center">
-                                    <Border Background="#60ff93"
-                                            Height="45"
-                                            HorizontalAlignment="Center"
-                                            VerticalAlignment="Center"
-                                            Padding="5"
-                                            Cursor="Hand"
-                                            CornerRadius="{Binding Height, RelativeSource={RelativeSource Mode=Self}}"
-                                            Width="{Binding Height, RelativeSource={RelativeSource Mode=Self}}">
-                                        <Image Source="/Data/Images/play.png"
-                                               Height="27"
-                                               HorizontalAlignment="Center"
-                                               VerticalAlignment="Center"
-                                               Width="{Binding Height, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Border}}"/>
-                                    </Border>
-                                    <TextBlock HorizontalAlignment="Center"
-                                               Margin="0 5 0 0 ">
-                                        Play
-                                    </TextBlock>
+                                    <Grid>
+                                        <StackPanel Visibility="{Binding Table.Status, Converter={converter:StringToVisibilityConverter}, ConverterParameter=Free}">
+                                            <Border Background="#60ff93"
+                                                    Height="45"
+                                                    HorizontalAlignment="Center"
+                                                    VerticalAlignment="Center"
+                                                    Padding="5"
+                                                    Cursor="Hand"
+                                                    CornerRadius="{Binding Height, RelativeSource={RelativeSource Mode=Self}}"
+                                                    Width="{Binding Height, RelativeSource={RelativeSource Mode=Self}}">
+                                                <Border.InputBindings>
+                                                    <MouseBinding MouseAction="LeftClick"
+                                                                  Command="{Binding PlayCommand}"/>
+                                                </Border.InputBindings>
+                                                <Image Source="/Data/Images/play.png"
+                                                       Height="27"
+                                                       HorizontalAlignment="Center"
+                                                       VerticalAlignment="Center"
+                                                       Width="{Binding Height, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Border}}"/>
+                                            </Border>
+                                            <TextBlock HorizontalAlignment="Center"
+                                                       Margin="0 5 0 0 ">
+                                                Play
+                                            </TextBlock>
+                                        </StackPanel>
+                                        <StackPanel Visibility="{Binding Table.Status, Converter={converter:StringToVisibilityConverter}, ConverterParameter=Occuppied}">
+                                            <Border Background="#fe5f62"
+                                                    Height="45"
+                                                    HorizontalAlignment="Center"
+                                                    VerticalAlignment="Center"
+                                                    Padding="5"
+                                                    Cursor="Hand"
+                                                    CornerRadius="{Binding Height, RelativeSource={RelativeSource Mode=Self}}"
+                                                    Width="{Binding Height, RelativeSource={RelativeSource Mode=Self}}">
+                                                <Border.InputBindings>
+                                                    <MouseBinding MouseAction="LeftClick"
+                                                                  Command="{Binding PlayCommand}"/>
+                                                </Border.InputBindings>
+                                                <Image Source="/Data/Images/stop.png"
+                                                       Height="27"
+                                                       HorizontalAlignment="Center"
+                                                       VerticalAlignment="Center"
+                                                       Width="{Binding Height, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Border}}"/>
+                                            </Border>
+                                            <TextBlock HorizontalAlignment="Center"
+                                                       Margin="0 5 0 0 ">
+                                                Stop
+                                            </TextBlock>
+                                        </StackPanel>
+                                    </Grid>
                                 </StackPanel>
                                 
                             </Grid>
