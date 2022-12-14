@@ -42,6 +42,11 @@ namespace SnookerClubApp.Core.View_Model.Page
         /// </summary>
         public ICommand PlayCommand { get; set; }
 
+        /// <summary>
+        /// The command to delete the table
+        /// </summary>
+        public ICommand DeleteCommand { get; set; }
+
         #endregion
 
         #region Constructor
@@ -80,7 +85,10 @@ namespace SnookerClubApp.Core.View_Model.Page
                 TimeSpan ts = timeManager.GetTimeSpanForTable(Table.Number);
                 TimerText = ts.ToString("c");
             }
+            DeleteCommand = new RelayCommand(() =>
+            {
 
+            });
             PlayCommand = new RelayCommand(() =>
             {
                 if(Table.Status == TableStatus.Occuppied)

@@ -45,3 +45,5 @@ D:\Work\Programming\Visual Studio 2022\C#\.Net Framework\WPF\SnookerClubApp\Snoo
 D:\Work\Programming\Visual Studio 2022\C#\.Net Framework\WPF\SnookerClubApp\SnookerClubApp\obj\Debug\net6.0-windows\SnookerClubApp.pdb
 D:\Work\Programming\Visual Studio 2022\C#\.Net Framework\WPF\SnookerClubApp\SnookerClubApp\obj\Debug\net6.0-windows\SnookerClubApp.genruntimeconfig.cache
 D:\Work\Programming\Visual Studio 2022\C#\.Net Framework\WPF\SnookerClubApp\SnookerClubApp\obj\Debug\net6.0-windows\ref\SnookerClubApp.dll
+D:\Work\Programming\Visual Studio 2022\C#\.Net Framework\WPF\SnookerClubApp\SnookerClubApp\obj\Debug\net6.0-windows\DialogBoxes\WeeklyTableDetails.g.cs
+D:\Work\Programming\Visual Studio 2022\C#\.Net Framework\WPF\SnookerClubApp\SnookerClubApp\obj\Debug\net6.0-windows\DialogBoxes\WeeklyTableDetails.baml

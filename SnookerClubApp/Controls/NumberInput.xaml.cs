@@ -193,9 +193,10 @@ namespace SnookerClubApp
                 return;
             }
             string text = textBox.Text;
-
+            string number = text;
             //parsing text
-            string number = text.Replace(Suffix, "");
+            if (!string.IsNullOrEmpty(Suffix))
+                number = text.Replace(Suffix, "");
             int time = string.IsNullOrEmpty(number) ? 0 : int.Parse(number);
             if ((Min != null && time < Min) || (Max != null && time > Max))
                 textBox.Text = _previousText;

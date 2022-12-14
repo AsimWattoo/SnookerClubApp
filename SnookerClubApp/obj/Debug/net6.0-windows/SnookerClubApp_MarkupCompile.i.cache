@@ -1,0 +1,20 @@
+﻿SnookerClubApp
+1.0.0.0
+
+winexe
+C#
+.cs
+D:\Work\Programming\Visual Studio 2022\C#\.Net Framework\WPF\SnookerClubApp\SnookerClubApp\obj\Debug\net6.0-windows\
+SnookerClubApp
+none
+false
+TRACE;DEBUG;NET;NET6_0;NETCOREAPP
+D:\Work\Programming\Visual Studio 2022\C#\.Net Framework\WPF\SnookerClubApp\SnookerClubApp\App.xaml
+13-288854849
+
+32-1496381364
+1971699333211
+Controls\Navigator.xaml;Controls\NumberInput.xaml;Controls\Shared\TableDisplay.xaml;Controls\TopBar.xaml;DialogBoxes\WeeklyTableDetails.xaml;MainWindow.xaml;Pages\DefaultPage.xaml;Pages\Home.xaml;Pages\TableDetails.xaml;Styles\Buttons.xaml;Styles\Colors.xaml;Styles\Fonts.xaml;Styles\Texts.xaml;
+
+True
+

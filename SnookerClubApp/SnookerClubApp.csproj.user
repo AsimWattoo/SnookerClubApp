@@ -16,6 +16,9 @@
     <Compile Update="Controls\TopBar.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="DialogBoxes\WeeklyTableDetails.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Pages\Home.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -34,6 +37,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Controls\TopBar.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="DialogBoxes\WeeklyTableDetails.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MainWindow.xaml">

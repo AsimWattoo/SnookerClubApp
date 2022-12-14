@@ -1,4 +1,5 @@
-﻿using SnookerClubApp.ViewModels;
+﻿using SnookerClubApp.Core.View_Model.Dialog;
+using SnookerClubApp.ViewModels;
 
 using System.Windows;
 
@@ -13,6 +14,8 @@ namespace SnookerClubApp
         {
             InitializeComponent();
             this.DataContext = new MainWindowViewModel(this);
+            WeeklyTableDetails details  = new WeeklyTableDetails();
+            details.Show();
         }
     }
 }
