@@ -93,7 +93,7 @@ namespace SnookerClubApp {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/SnooketClubApp;component/controls/numberinput.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/SnookerClubApp;component/controls/numberinput.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Controls\NumberInput.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

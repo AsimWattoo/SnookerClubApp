@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "d3U2IlCP4pSD5K7344EkKkBNP+UyGR6VnfZu6ZZjoxyawoEI71aRFpK8bc3PzuSxAye7xR22T713Pgn1yoojnQ==",
+  "dgSpecHash": "xQH/YnWn8IwnA00Hvx79twURtTP6YXHVxB/loT0CMIg7pEeNz29exuSxhyyRAE3dAp+B+ReY+sM2z0cDX/NRPA==",
   "success": true,
-  "projectFilePath": "D:\\Work\\Programming\\Visual Studio 2022\\C#\\.Net Framework\\WPF\\SnookerClubApp\\SnookerClubApp\\SnooketClubApp.csproj",
+  "projectFilePath": "D:\\Work\\Programming\\Visual Studio 2022\\C#\\.Net Framework\\WPF\\SnookerClubApp\\SnookerClubApp\\SnookerClubApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\asimw\\.nuget\\packages\\fody\\6.6.2\\fody.6.6.2.nupkg.sha512",
     "C:\\Users\\asimw\\.nuget\\packages\\newtonsoft.json\\13.0.2\\newtonsoft.json.13.0.2.nupkg.sha512",

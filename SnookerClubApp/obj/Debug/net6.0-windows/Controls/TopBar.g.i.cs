@@ -53,7 +53,7 @@ namespace SnookerClubApp {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/SnooketClubApp;component/controls/topbar.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/SnookerClubApp;component/controls/topbar.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Controls\TopBar.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

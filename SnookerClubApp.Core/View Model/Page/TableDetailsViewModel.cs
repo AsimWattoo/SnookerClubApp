@@ -77,6 +77,8 @@ namespace SnookerClubApp.Core.View_Model.Page
             if (Table.Status == TableStatus.Occuppied)
             {
                 timeManager.Tick += TableDetailsViewModel_Tick;
+                TimeSpan ts = timeManager.GetTimeSpanForTable(Table.Number);
+                TimerText = ts.ToString("c");
             }
 
             PlayCommand = new RelayCommand(() =>
