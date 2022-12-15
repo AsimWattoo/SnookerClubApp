@@ -1,10 +1,13 @@
-﻿using SnookerClubApp.Core.Enum;
+﻿using Microsoft.SqlServer.Server;
+
+using SnookerClubApp.Core.Enum;
 using SnookerClubApp.Core.IoCContainer;
 using SnookerClubApp.Core.Managers;
 using SnookerClubApp.Core.View_Model.Base;
 using SnookerClubApp.Core.View_Model.Dialog;
 
 using System;
+using System.Data;
 using System.Timers;
 using System.Windows.Input;
 
@@ -122,6 +125,7 @@ namespace SnookerClubApp.Core.View_Model.Page
             {
                 //Showing the dialog box
                 IoC.Get<IDialogBoxManager>().ShowWeeklyDetailsDialogBox(new WeeklyTableDetailsViewModel(Table));
+                PropertyValueChanged(nameof(Table));
             });
         }
 

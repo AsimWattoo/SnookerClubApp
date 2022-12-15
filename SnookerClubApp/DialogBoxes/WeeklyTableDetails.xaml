@@ -184,10 +184,10 @@
 
         <ItemsControl Grid.Row="1"
                       Grid.Column="1"
-                      ItemsSource="{Binding Table.WeeklyRates}">
+                      ItemsSource="{Binding Items}">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <local:NumberInput Number="{Binding Path=., Mode=TwoWay}"
+                    <local:NumberInput Number="{Binding Value, Mode=TwoWay}"
                                        Suffix="/hr"
                                        Margin="0 5"
                                        FontSize="18"

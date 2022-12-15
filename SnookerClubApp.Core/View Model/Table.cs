@@ -22,7 +22,14 @@ namespace SnookerClubApp.Core.View_Model
         /// <summary>
         /// The rate of the table
         /// </summary>
-        public double CurrentDayRate { get; set; }
+        public double CurrentDayRate
+        {
+            get 
+            {
+                string day = DateTime.Now.ToString("dddd");
+                return WeeklyRates[day];
+            }
+        }
 
         /// <summary>
         /// The number of hours for timer
@@ -47,7 +54,16 @@ namespace SnookerClubApp.Core.View_Model
         /// <summary>
         /// The weekly rates for a table
         /// </summary>
-        public List<double> WeeklyRates { get; set; } = new List<double>();
+        public Dictionary<string, double> WeeklyRates { get; set; } = new Dictionary<string, double>()
+        {
+            ["Monday"] = 0,
+            ["Tuesday"] = 0,
+            ["Wednesday"] = 0,
+            ["Thursday"] = 0,
+            ["Friday"] = 0,
+            ["Satruday"] = 0,
+            ["Sunday"] = 0,
+        };
 
         #endregion
     }

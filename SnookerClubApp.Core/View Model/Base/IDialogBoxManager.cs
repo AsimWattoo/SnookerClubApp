@@ -1,4 +1,6 @@
-﻿namespace SnookerClubApp.Core.View_Model.Base
+﻿using System;
+
+namespace SnookerClubApp.Core.View_Model.Base
 {
     public interface IDialogBoxManager
     {

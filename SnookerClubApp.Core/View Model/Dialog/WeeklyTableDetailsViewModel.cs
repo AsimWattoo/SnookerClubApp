@@ -1,6 +1,8 @@
 ﻿using SnookerClubApp.Core.View_Model.Base;
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 
@@ -19,9 +21,9 @@ namespace SnookerClubApp.Core.View_Model.Dialog
         public int CaptionHeight { get; set; } = 60;
 
         /// <summary>
-        /// The table whose weekly details are being shown
+        /// The list of weekly details items
         /// </summary>
-        public Table Table { get; set; } = new Table();
+        public List<WeeklyTableDetailsItem> Items { get; set; } = new List<WeeklyTableDetailsItem>();
 
         #endregion
 
@@ -35,6 +37,11 @@ namespace SnookerClubApp.Core.View_Model.Dialog
         #endregion
 
         #region Private Members
+
+        /// <summary>
+        /// The table whose weekly details are being shown
+        /// </summary>
+        private Table _table { get; set; } = new Table();
 
         /// <summary>
         /// The action to call when the close button is clicked
@@ -81,7 +88,8 @@ namespace SnookerClubApp.Core.View_Model.Dialog
         /// <param name="t"></param>
         public WeeklyTableDetailsViewModel(Table t)
         {
-            Table = t;
+            _table = t;
+            Items = t.WeeklyRates.Select(f => new WeeklyTableDetailsItem(f.Value)).ToList();
             Initialize();
         }
 
@@ -96,7 +104,11 @@ namespace SnookerClubApp.Core.View_Model.Dialog
         {
             CloseCommand = new RelayCommand(() =>
             {
-                Table t = Table;
+                List<string> days = _table.WeeklyRates.Keys.ToList();
+                for(int i = 0; i < Items.Count; i++)
+                {
+                    _table.WeeklyRates[days[i]] = Items[i].Value;
+                }
                 _closeAction.Invoke();
             });
         }

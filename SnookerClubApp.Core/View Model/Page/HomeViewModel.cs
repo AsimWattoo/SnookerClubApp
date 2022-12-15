@@ -53,8 +53,6 @@ namespace SnookerClubApp.Core.View_Model.Page
                 Table t = new Table()
                 {
                     Number = Number++,
-                    CurrentDayRate = 0,
-                    WeeklyRates = new List<double>() { 0, 0, 0, 0, 0, 0, 0,}
                 };
                 data.Tables.Add(t);
                 Tables.Add(t);
