@@ -8,6 +8,7 @@
         mc:Ignorable="d"
         WindowStyle="None"
         AllowsTransparency="true"
+        WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
         Title="WeeklyTableDetails" Height="500" Width="370">
 
@@ -181,83 +182,28 @@
 
         </Grid>
 
-        <Grid Grid.Row="1"
-              Grid.Column="1">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-
-            <Border Grid.Row="0">
-                <local:NumberInput Number="0"
-                               Suffix="/hr"
-                               Margin="0 5"
-                               HorizontalAlignment="Center"
-                               VerticalAlignment="Center"
-                               MinWidth="100"/>
-            </Border>
-
-            <Border Grid.Row="1">
-                <local:NumberInput Number="0"
-                               Suffix="/hr"
-                               Margin="0 5"
-                               HorizontalAlignment="Center"
-                               VerticalAlignment="Center"
-                               MinWidth="100"/>
-            </Border>
-
-            <Border Grid.Row="2">
-                <local:NumberInput Number="0"
-                               Suffix="/hr"
-                               Margin="0 5"
-                               HorizontalAlignment="Center"
-                               VerticalAlignment="Center"
-                               MinWidth="100"/>
-            </Border>
-
-            <Border Grid.Row="3">
-                <local:NumberInput Number="0"
-                               Suffix="/hr"
-                               Margin="0 5"
-                               HorizontalAlignment="Center"
-                               VerticalAlignment="Center"
-                               MinWidth="100"/>
-            </Border>
-
-            <Border Grid.Row="4">
-                <local:NumberInput Number="0"
-                               Suffix="/hr"
-                               Margin="0 5"
-                               HorizontalAlignment="Center"
-                               VerticalAlignment="Center"
-                               MinWidth="100"/>
-            </Border>
-
-            <Border Grid.Row="5">
-                <local:NumberInput Number="0"
-                               Suffix="/hr"
-                               Margin="0 5"
-                               HorizontalAlignment="Center"
-                               VerticalAlignment="Center"
-                               MinWidth="100"/>
-            </Border>
-
-            <Border Grid.Row="6">
-                <local:NumberInput Number="0"
-                               Suffix="/hr"
-                               Margin="0 5"
-                               HorizontalAlignment="Center"
-                               VerticalAlignment="Center"
-                               MinWidth="100"/>
-            </Border>
-
-        </Grid>
-
+        <ItemsControl Grid.Row="1"
+                      Grid.Column="1"
+                      ItemsSource="{Binding Table.WeeklyRates}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <local:NumberInput Number="{Binding Path=., Mode=TwoWay}"
+                                       Suffix="/hr"
+                                       Margin="0 5"
+                                       FontSize="18"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       Width="140"
+                                       Min="0"/>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Rows="7"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+        </ItemsControl>
+        
         <Border Grid.Row="2"
                 Width="150"
                 Padding="0 5"

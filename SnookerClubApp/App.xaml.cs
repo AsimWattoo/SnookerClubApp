@@ -2,6 +2,8 @@
 using SnookerClubApp.Core.IoCContainer;
 using SnookerClubApp.Core.Managers;
 using SnookerClubApp.Core.View_Model;
+using SnookerClubApp.Core.View_Model.Base;
+using SnookerClubApp.DialogBoxes;
 
 using System.Windows;
 
@@ -40,6 +42,7 @@ namespace SnookerClubApp
             TimeManager timeManager = new TimeManager();
             timeManager.Start();
             IoC.RegisterStatic<TimeManager>(timeManager);
+            IoC.RegisterStatic<IDialogBoxManager>(new DialogBoxManager());
         }
 
         protected override void OnExit(ExitEventArgs e)

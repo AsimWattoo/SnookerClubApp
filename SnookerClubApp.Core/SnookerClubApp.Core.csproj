@@ -61,8 +61,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="View Model\ApplicationData.cs" />
     <Compile Include="View Model\Base\BaseViewModel.cs" />
+    <Compile Include="View Model\Base\IDialogBoxManager.cs" />
     <Compile Include="View Model\Base\RelayParameterizedCommand.cs" />
     <Compile Include="View Model\Base\RelayCommand.cs" />
+    <Compile Include="View Model\Dialog\WeeklyTableDetailsViewModel.cs" />
     <Compile Include="View Model\Page\HomeViewModel.cs" />
     <Compile Include="View Model\Page\TableDetailsViewModel.cs" />
     <Compile Include="View Model\Table.cs" />

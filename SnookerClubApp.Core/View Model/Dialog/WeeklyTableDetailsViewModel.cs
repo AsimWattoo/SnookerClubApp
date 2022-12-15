@@ -18,6 +18,11 @@ namespace SnookerClubApp.Core.View_Model.Dialog
         /// </summary>
         public int CaptionHeight { get; set; } = 60;
 
+        /// <summary>
+        /// The table whose weekly details are being shown
+        /// </summary>
+        public Table Table { get; set; } = new Table();
+
         #endregion
 
         #region Commands
@@ -70,6 +75,16 @@ namespace SnookerClubApp.Core.View_Model.Dialog
             Initialize();
         }
 
+        /// <summary>
+        /// Constructor initializing the viewmodel with data
+        /// </summary>
+        /// <param name="t"></param>
+        public WeeklyTableDetailsViewModel(Table t)
+        {
+            Table = t;
+            Initialize();
+        }
+
         #endregion
 
         #region Private Methods
@@ -81,6 +96,7 @@ namespace SnookerClubApp.Core.View_Model.Dialog
         {
             CloseCommand = new RelayCommand(() =>
             {
+                Table t = Table;
                 _closeAction.Invoke();
             });
         }

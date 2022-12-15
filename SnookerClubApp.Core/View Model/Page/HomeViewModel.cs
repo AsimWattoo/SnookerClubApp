@@ -54,6 +54,7 @@ namespace SnookerClubApp.Core.View_Model.Page
                 {
                     Number = Number++,
                     CurrentDayRate = 0,
+                    WeeklyRates = new List<double>() { 0, 0, 0, 0, 0, 0, 0,}
                 };
                 data.Tables.Add(t);
                 Tables.Add(t);
@@ -61,6 +62,5 @@ namespace SnookerClubApp.Core.View_Model.Page
         }
 
         #endregion
-
     }
 }

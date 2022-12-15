@@ -35,6 +35,11 @@ namespace SnookerClubApp.Core.View_Model
         public double Minutes { get; set; }
 
         /// <summary>
+        /// The remaining time of the currently running Table
+        /// </summary>
+        public TimeSpan RemainingTime { get; set; }
+
+        /// <summary>
         /// Indicates whether the timer has limit or not
         /// </summary>
         public bool IsFixed { get; set; } = false;
@@ -42,7 +47,7 @@ namespace SnookerClubApp.Core.View_Model
         /// <summary>
         /// The weekly rates for a table
         /// </summary>
-        public Dictionary<string, double> WeeklyRates { get; set; } = new Dictionary<string, double>();
+        public List<double> WeeklyRates { get; set; } = new List<double>();
 
         #endregion
     }

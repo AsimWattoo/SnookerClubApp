@@ -14,8 +14,6 @@ namespace SnookerClubApp
         {
             InitializeComponent();
             this.DataContext = new MainWindowViewModel(this);
-            WeeklyTableDetails details  = new WeeklyTableDetails();
-            details.Show();
         }
     }
 }

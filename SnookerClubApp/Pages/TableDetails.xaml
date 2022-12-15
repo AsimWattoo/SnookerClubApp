@@ -148,9 +148,14 @@
                                     <Border Background="black"
                                             Height="30"
                                             Padding="4"
+                                            Cursor="Hand"
                                             Width="{Binding Height, RelativeSource={RelativeSource Mode=Self}}"
                                             CornerRadius="{Binding Height, RelativeSource={RelativeSource Mode=Self}}"
                                             Margin="5 0 0 0">
+                                        <Border.InputBindings>
+                                            <MouseBinding MouseAction="LeftClick" 
+                                                          Command="{Binding DetailsCommand}"/>
+                                        </Border.InputBindings>
                                         <Image Source="/Data/Images/Settings.png"/>
                                     </Border>
 

@@ -2,6 +2,7 @@
 using SnookerClubApp.Core.IoCContainer;
 using SnookerClubApp.Core.Managers;
 using SnookerClubApp.Core.View_Model.Base;
+using SnookerClubApp.Core.View_Model.Dialog;
 
 using System;
 using System.Timers;
@@ -47,6 +48,11 @@ namespace SnookerClubApp.Core.View_Model.Page
         /// </summary>
         public ICommand DeleteCommand { get; set; }
 
+        /// <summary>
+        /// The command to view table details
+        /// </summary>
+        public ICommand DetailsCommand { get; set; }
+
         #endregion
 
         #region Constructor
@@ -83,12 +89,15 @@ namespace SnookerClubApp.Core.View_Model.Page
             {
                 timeManager.Tick += TableDetailsViewModel_Tick;
                 TimeSpan ts = timeManager.GetTimeSpanForTable(Table.Number);
+                Table.RemainingTime = ts;
                 TimerText = ts.ToString("c");
             }
+            //Command to delete the table
             DeleteCommand = new RelayCommand(() =>
             {
 
             });
+            //Command to start and stop the timer
             PlayCommand = new RelayCommand(() =>
             {
                 if(Table.Status == TableStatus.Occuppied)
@@ -102,10 +111,17 @@ namespace SnookerClubApp.Core.View_Model.Page
                     Table.Status = TableStatus.Occuppied;
                     TimeSpan ts = TimeSpan.Parse($"{Table.Hours}:{Table.Minutes}:00");
                     timeManager.AddTable(Table, ts);
+                    Table.RemainingTime = ts;
                     TimerText = ts.ToString("c");
                     timeManager.Tick += TableDetailsViewModel_Tick;
                 }
                 PropertyValueChanged(nameof(Table));
+            });
+            //Command to view table details
+            DetailsCommand = new RelayCommand(() =>
+            {
+                //Showing the dialog box
+                IoC.Get<IDialogBoxManager>().ShowWeeklyDetailsDialogBox(new WeeklyTableDetailsViewModel(Table));
             });
         }
 
@@ -119,6 +135,7 @@ namespace SnookerClubApp.Core.View_Model.Page
             if(tableNumber == Table.Number)
             {
                 TimerText = timeSpan.ToString("c");
+                Table.RemainingTime = timeSpan;
                 PropertyValueChanged(nameof(TimerText));
             }
         }
