@@ -189,6 +189,7 @@
                 <DataTemplate>
                     <local:NumberInput Number="{Binding Value, Mode=TwoWay}"
                                        Suffix="/hr"
+                                       Prefix="£"
                                        Margin="0 5"
                                        FontSize="18"
                                        HorizontalAlignment="Center"
@@ -210,7 +211,11 @@
                 VerticalAlignment="Center"
                 HorizontalAlignment="Center"
                 Background="#60ff93"
+                Cursor="Hand"
                 CornerRadius="5">
+            <Border.InputBindings>
+                <MouseBinding MouseAction="LeftClick" Command="{Binding SaveCommand}"/>
+            </Border.InputBindings>
             <TextBlock Text="Save"
                        FontSize="18"
                        Foreground="Black"
@@ -225,7 +230,11 @@
                 VerticalAlignment="Center"
                 HorizontalAlignment="Center"
                 Background="#fe5f62"
+                Cursor="Hand"
                 CornerRadius="5">
+            <Border.InputBindings>
+                <MouseBinding MouseAction="LeftClick" Command="{Binding CloseCommand}"/>
+            </Border.InputBindings>
             <TextBlock Text="Cancel"
                        FontSize="18"
                        Foreground="White"

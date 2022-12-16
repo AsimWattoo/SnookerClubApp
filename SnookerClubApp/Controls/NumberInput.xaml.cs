@@ -17,7 +17,7 @@ namespace SnookerClubApp
         /// <summary>
         /// The preiovus text value of the text box
         /// </summary>
-        private string _previousText { get; set; }
+        private string _previousText { get; set; } = string.Empty;
 
         #endregion
 
@@ -39,15 +39,15 @@ namespace SnookerClubApp
         /// <summary>
         /// The number property
         /// </summary>
-        public int Number
+        public double Number
         {
-            get { return (int)GetValue(NumberProperty); }
+            get { return (double)GetValue(NumberProperty); }
             set { SetValue(NumberProperty, value); }
         }
 
         // Using a DependencyProperty as the backing store for Number.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty NumberProperty =
-            DependencyProperty.Register("Number", typeof(int), typeof(NumberInput), new PropertyMetadata(0, propertyChanged));
+            DependencyProperty.Register("Number", typeof(double), typeof(NumberInput), new PropertyMetadata(0.0d, propertyChanged));
 
         /// <summary>
         /// The Suffix to show with the number
@@ -62,10 +62,23 @@ namespace SnookerClubApp
         public static readonly DependencyProperty SuffixProperty =
             DependencyProperty.Register("Suffix", typeof(string), typeof(NumberInput), new PropertyMetadata("", propertyChanged));
 
-        /// <summary>
-        /// Holds value comprising of number and Suffix
-        /// </summary>
-        public string Time
+		/// <summary>
+		/// The Suffix to show with the number
+		/// </summary>
+		public string Prefix
+		{
+			get { return (string)GetValue(PrefixProperty); }
+			set { SetValue(PrefixProperty, value); }
+		}
+
+		// Using a DependencyProperty as the backing store for Suffix.  This enables animation, styling, binding, etc...
+		public static readonly DependencyProperty PrefixProperty =
+			DependencyProperty.Register("Prefix", typeof(string), typeof(NumberInput), new PropertyMetadata("", propertyChanged));
+
+		/// <summary>
+		/// Holds value comprising of number and Suffix
+		/// </summary>
+		public string Time
         {
             get { return (string)GetValue(TimeProperty); }
             set { SetValue(TimeProperty, value); }
@@ -78,28 +91,28 @@ namespace SnookerClubApp
         /// <summary>
         /// The minimum value for the number
         /// </summary>
-        public int? Min
+        public double? Min
         {
-            get { return (int?)GetValue(MinProperty); }
+            get { return (double?)GetValue(MinProperty); }
             set { SetValue(MinProperty, value); }
         }
 
         // Using a DependencyProperty as the backing store for Min.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty MinProperty =
-            DependencyProperty.Register("Min", typeof(int?), typeof(NumberInput), new PropertyMetadata(null));
+            DependencyProperty.Register("Min", typeof(double?), typeof(NumberInput), new PropertyMetadata(null));
 
         /// <summary>
         /// The maximum value for the number
         /// </summary>
-        public int? Max
+        public double? Max
         {
-            get { return (int?)GetValue(MaxProperty); }
+            get { return (double?)GetValue(MaxProperty); }
             set { SetValue(MaxProperty, value); }
         }
 
         // Using a DependencyProperty as the backing store for Max.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty MaxProperty =
-            DependencyProperty.Register("Max", typeof(int?), typeof(NumberInput), new PropertyMetadata(null));
+            DependencyProperty.Register("Max", typeof(double?), typeof(NumberInput), new PropertyMetadata(null));
 
         #endregion
 
@@ -113,9 +126,10 @@ namespace SnookerClubApp
         /// <exception cref="NotImplementedException"></exception>
         private static void propertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            int number = (int)d.GetValue(NumberProperty);
+			double number = (double)d.GetValue(NumberProperty);
             string suffix = (string)d.GetValue(SuffixProperty);
-            d.SetValue(TimeProperty, $"{number}{suffix}");
+            string prefix = (string)d.GetValue(PrefixProperty);
+            d.SetValue(TimeProperty, $"{prefix}{number}{suffix}");
         }
 
 
@@ -160,7 +174,7 @@ namespace SnookerClubApp
         /// <param name="e"></param>
         private void TextBox_KeyDown(object sender, KeyEventArgs e)
         {
-            if ((e.Key < Key.D0 || e.Key > Key.D9) && (e.Key < Key.NumPad0 || e.Key > Key.NumPad9))
+            if ((e.Key < Key.D0 || e.Key > Key.D9) && (e.Key < Key.NumPad0 || e.Key > Key.NumPad9) && e.Key != Key.Decimal)
                 e.Handled = true;
 
         }
@@ -196,8 +210,15 @@ namespace SnookerClubApp
             string number = text;
             //parsing text
             if (!string.IsNullOrEmpty(Suffix))
-                number = text.Replace(Suffix, "");
-            int time = string.IsNullOrEmpty(number) ? 0 : int.Parse(number);
+				number = text.Replace(Suffix, "");
+            if(!string.IsNullOrEmpty(Prefix))
+				number = number.Replace(Prefix, "");
+
+            double time;
+
+            if (!double.TryParse(number, out time))
+                time = 0;
+
             if ((Min != null && time < Min) || (Max != null && time > Max))
                 textBox.Text = _previousText;
             else
@@ -207,6 +228,8 @@ namespace SnookerClubApp
             {
                 textBox.Text += Suffix;
             }
+            if (!text.StartsWith(Prefix))
+                textBox.Text = $"{Prefix}{textBox.Text}";
         }
 
         #endregion

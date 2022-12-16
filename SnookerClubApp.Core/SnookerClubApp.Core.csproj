@@ -65,7 +65,9 @@
     <Compile Include="View Model\Base\RelayParameterizedCommand.cs" />
     <Compile Include="View Model\Base\RelayCommand.cs" />
     <Compile Include="View Model\Dialog\WeeklyTableDetailsItem.cs" />
+    <Compile Include="View Model\Dialog\ExtrasFormViewModel.cs" />
     <Compile Include="View Model\Dialog\WeeklyTableDetailsViewModel.cs" />
+    <Compile Include="View Model\Item\ExtraItem.cs" />
     <Compile Include="View Model\Page\HomeViewModel.cs" />
     <Compile Include="View Model\Page\TableDetailsViewModel.cs" />
     <Compile Include="View Model\Table.cs" />

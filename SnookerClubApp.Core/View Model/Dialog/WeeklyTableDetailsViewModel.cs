@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
@@ -33,6 +34,11 @@ namespace SnookerClubApp.Core.View_Model.Dialog
         /// The command to close the dialog box
         /// </summary>
         public ICommand CloseCommand { get; set; }
+
+        /// <summary>
+        /// Command to save the data to the table
+        /// </summary>
+        public ICommand SaveCommand { get; set; }
 
         #endregion
 
@@ -104,8 +110,12 @@ namespace SnookerClubApp.Core.View_Model.Dialog
         {
             CloseCommand = new RelayCommand(() =>
             {
+                _closeAction.Invoke();
+            });
+            SaveCommand = new RelayCommand(() =>
+            {
                 List<string> days = _table.WeeklyRates.Keys.ToList();
-                for(int i = 0; i < Items.Count; i++)
+                for (int i = 0; i < Items.Count; i++)
                 {
                     _table.WeeklyRates[days[i]] = Items[i].Value;
                 }

@@ -166,6 +166,10 @@
                                             CornerRadius="10"
                                             Padding="15 3"
                                             Cursor="Hand">
+                                        <Border.InputBindings>
+                                            <MouseBinding MouseAction="LeftClick"
+                                                          Command="{Binding AddExtraCommand}"/>
+                                        </Border.InputBindings>
                                         <TextBlock FontSize="12">
                                             ADD EXTRAS
                                         </TextBlock>
@@ -185,6 +189,7 @@
                                         <local:NumberInput Margin="10 0 0 0"
                                                            Number="{Binding Table.Hours, Mode=TwoWay}"
                                                            Min="0"
+                                                           FontSize="18"
                                                            Suffix="h"/>
                                         <TextBlock HorizontalAlignment="Center"
                                                    FontSize="15"
@@ -195,10 +200,11 @@
 
                                     <StackPanel>
                                         <local:NumberInput Margin="10 0 0 0"
-                                                       Number="{Binding Table.Minutes, Mode=TwoWay}"
-                                                       Min="0"
-                                                       Max="60"
-                                                       Suffix="m"/>
+                                                           Number="{Binding Table.Minutes, Mode=TwoWay}"
+                                                           Min="0"
+                                                           Max="60"
+                                                           FontSize="18"
+                                                           Suffix="m"/>
                                         <TextBlock HorizontalAlignment="Center"
                                                    FontSize="15"
                                                    Margin="0 5 0 0 ">
@@ -312,7 +318,89 @@
                                                    HorizontalAlignment="Center"
                                                    VerticalAlignment="Center"/>
 
-                                        <TextBlock Text="Pepsi"
+                                        <ItemsControl ItemsSource="{Binding ExtraItems}"
+                                                      Grid.Row="1"
+                                                      Grid.ColumnSpan="3"
+                                                      Margin="0 10 0 0">
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <Border Padding="0 10"
+                                                            Margin="0 3"
+                                                            BorderThickness="0 0 0 1"
+                                                            BorderBrush="#fff"
+                                                            CornerRadius="5">
+                                                        <Grid VerticalAlignment="Center">
+
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="*"/>
+                                                                <ColumnDefinition Width="*"/>
+                                                                <ColumnDefinition Width="2*"/>
+                                                            </Grid.ColumnDefinitions>
+
+                                                            <TextBlock Text="{Binding Name}"
+                                                                       Grid.Column="0"
+                                                                       FontSize="19"
+                                                                       FontWeight="Bold"
+                                                                       HorizontalAlignment="Center"
+                                                                       VerticalAlignment="Center"/>
+
+                                                            <TextBlock Text="{Binding Price, Converter={converter:PriceConverter},ConverterParameter=d}"
+                                                                       Grid.Column="1"
+                                                                       FontSize="19"
+                                                                       FontWeight="Bold"
+                                                                       HorizontalAlignment="Center"
+                                                                       VerticalAlignment="Center"/>
+
+                                                            <Border Grid.Row="1"
+                                                                    Grid.Column="2"
+                                                                    Margin="0 20 0 0"
+                                                                    HorizontalAlignment="Center"
+                                                                    VerticalAlignment="Center">
+
+                                                                <StackPanel Orientation="Horizontal">
+
+                                                                    <Border Background="White"
+                                                                            Width="100"
+                                                                            Padding="0 3"
+                                                                            Cursor="Hand"
+                                                                            Margin="5 0"
+                                                                            CornerRadius="10">
+                                                                        <TextBlock FontSize="16"
+                                                                                   HorizontalAlignment="Center"
+                                                                                   VerticalAlignment="Center">
+                                                                            Edit
+                                                                        </TextBlock>
+                                                                    </Border>
+
+                                                                    <Border Background="#fe5f62"
+                                                                            Margin="5 0"
+                                                                            Width="100"
+                                                                            Cursor="Hand"
+                                                                            Padding="0 3"
+                                                                            CornerRadius="10">
+                                                                        <TextBlock VerticalAlignment="Center"
+                                                                                   FontSize="16"
+                                                                                   HorizontalAlignment="Center"
+                                                                                   Foreground="White">
+                                                                            Delete
+                                                                        </TextBlock>
+                                                                    </Border>
+
+                                                                </StackPanel>
+
+                                                            </Border>
+                                                        </Grid>
+                                                    </Border>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                            <ItemsControl.ItemsPanel>
+                                                <ItemsPanelTemplate>
+                                                    <UniformGrid Columns="1"/>
+                                                </ItemsPanelTemplate>
+                                            </ItemsControl.ItemsPanel>
+                                        </ItemsControl>
+                                        
+                                        <!--<TextBlock Text="Pepsi"
                                                    Grid.Row="1"
                                                    Grid.Column="0"
                                                    FontSize="19"
@@ -365,7 +453,7 @@
 
                                             </StackPanel>
                                             
-                                        </Border>
+                                        </Border>-->
 
                                     </Grid>
                                 </Border>

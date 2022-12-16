@@ -12,8 +12,8 @@ namespace SnookerClubApp.Converters
         {
             if (value is double d)
             {
-                return $"£{d}/hr";
-            }
+                return parameter == null ? $"£{d}/hr" : $"£{d}";
+			}
             else
             {
                 return "£0/hr";

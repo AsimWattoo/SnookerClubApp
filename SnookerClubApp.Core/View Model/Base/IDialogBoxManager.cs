@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SnookerClubApp.Core.View_Model.Item;
+
+using System;
 
 namespace SnookerClubApp.Core.View_Model.Base
 {
@@ -12,6 +14,12 @@ namespace SnookerClubApp.Core.View_Model.Base
         /// </summary>
         /// <param name="viewModel">The view model for the dialog box</param>
         void ShowWeeklyDetailsDialogBox(BaseViewModel viewModel);
+
+        /// <summary>
+        /// Shows a form for extras
+        /// </summary>
+        /// <returns></returns>
+        ExtraItem ShowExtrasFormDialogBox();
 
         #endregion
 

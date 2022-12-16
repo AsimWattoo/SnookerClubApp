@@ -5,8 +5,11 @@ using SnookerClubApp.Core.IoCContainer;
 using SnookerClubApp.Core.Managers;
 using SnookerClubApp.Core.View_Model.Base;
 using SnookerClubApp.Core.View_Model.Dialog;
+using SnookerClubApp.Core.View_Model.Item;
 
 using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data;
 using System.Timers;
 using System.Windows.Input;
@@ -37,6 +40,11 @@ namespace SnookerClubApp.Core.View_Model.Page
         /// </summary>
         public string TimerText { get; set; } = "00:00:00";
 
+        /// <summary>
+        /// The extra items for the table
+        /// </summary>
+        public ObservableCollection<ExtraItem> ExtraItems { get; set; } = new ObservableCollection<ExtraItem>();
+
         #endregion
 
         #region Commands
@@ -55,6 +63,11 @@ namespace SnookerClubApp.Core.View_Model.Page
         /// The command to view table details
         /// </summary>
         public ICommand DetailsCommand { get; set; }
+
+        /// <summary>
+        /// The command to add an extra to the table
+        /// </summary>
+        public ICommand AddExtraCommand { get; set; }
 
         #endregion
 
@@ -126,6 +139,15 @@ namespace SnookerClubApp.Core.View_Model.Page
                 //Showing the dialog box
                 IoC.Get<IDialogBoxManager>().ShowWeeklyDetailsDialogBox(new WeeklyTableDetailsViewModel(Table));
                 PropertyValueChanged(nameof(Table));
+            });
+            //Command to add extra for the table
+            AddExtraCommand = new RelayCommand(() =>
+            {
+                ExtraItem newItem = IoC.Get<IDialogBoxManager>().ShowExtrasFormDialogBox();
+                if(newItem != null)
+                {
+					ExtraItems.Add(newItem);
+				}
             });
         }
 

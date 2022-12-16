@@ -50,4 +50,10 @@
     <ProjectReference Include="..\SnookerClubApp.Core\SnookerClubApp.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="DialogBoxes\ExtrasForm.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
 </Project>
