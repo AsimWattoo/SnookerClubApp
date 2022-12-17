@@ -109,7 +109,22 @@ namespace SnookerClubApp.Core.Managers
         /// <returns></returns>
         public TimeSpan GetTimeSpanForTable(int t)
         {
-            return Tables[t];
+            TimeSpan timeSpan;
+            Tables.TryGetValue(t, out timeSpan);
+            return timeSpan;
+        }
+
+        /// <summary>
+        /// Indicates whether the timer is running
+        /// </summary>
+        /// <param name="table">The id of the table</param>
+        /// <returns></returns>
+        public bool IsTimerRunning(int table)
+        {
+            if (Tables.ContainsKey(table))
+                return true;
+            else
+                return false;
         }
 
         #endregion

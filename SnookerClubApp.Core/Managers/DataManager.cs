@@ -22,7 +22,7 @@ namespace SnookerClubApp.Core.Managers
         public void SaveData<T>(string path, T value)
         {
             string res = JsonConvert.SerializeObject(value);
-            using(StreamWriter writer = new StreamWriter(new FileStream(path, FileMode.OpenOrCreate)))
+            using(StreamWriter writer = new StreamWriter(new FileStream(path, FileMode.Create)))
             {
                 writer.Write(res);
             }

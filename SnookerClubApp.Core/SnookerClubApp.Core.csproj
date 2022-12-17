@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="Application\ApplicationViewModel.cs" />
     <Compile Include="Application\Pages.cs" />
+    <Compile Include="Application\RuntimeStorage.cs" />
     <Compile Include="Enum\TableStatus.cs" />
     <Compile Include="Exceptions\DuplicateKeyException.cs" />
     <Compile Include="IoCContainer\IoC.cs" />

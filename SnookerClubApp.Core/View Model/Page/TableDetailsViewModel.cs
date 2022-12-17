@@ -1,5 +1,6 @@
 ﻿using Microsoft.SqlServer.Server;
 
+using SnookerClubApp.Core.Application;
 using SnookerClubApp.Core.Enum;
 using SnookerClubApp.Core.IoCContainer;
 using SnookerClubApp.Core.Managers;
@@ -45,6 +46,16 @@ namespace SnookerClubApp.Core.View_Model.Page
         /// </summary>
         public ObservableCollection<ExtraItem> ExtraItems { get; set; } = new ObservableCollection<ExtraItem>();
 
+        /// <summary>
+        /// Indicates whether this is overtime
+        /// </summary>
+        public bool IsOverTime { get; set; }
+
+        /// <summary>
+        /// Indicates whether the timer is running infinite
+        /// </summary>
+        public bool IsInfinite { get; set; }
+
         #endregion
 
         #region Commands
@@ -68,6 +79,16 @@ namespace SnookerClubApp.Core.View_Model.Page
         /// The command to add an extra to the table
         /// </summary>
         public ICommand AddExtraCommand { get; set; }
+        
+        /// <summary>
+        /// The command to delete an extra item
+        /// </summary>
+        public ICommand DeleteExtraItemCommand { get; set; }
+
+        /// <summary>
+        /// The command to edit and extra item
+        /// </summary>
+        public ICommand EditExtraItemCommand { get; set; }
 
         #endregion
 
@@ -101,11 +122,23 @@ namespace SnookerClubApp.Core.View_Model.Page
         private void Initialize()
         {
             TimeManager timeManager = IoC.Get<TimeManager>();
+            RuntimeStorage storage = IoC.Get<RuntimeStorage>();
+            if (!storage.Extras.ContainsKey(Table.Number))
+                storage.Extras.Add(Table.Number, new List<ExtraItem>());
+            ExtraItems = new ObservableCollection<ExtraItem>(storage.Extras[Table.Number]);
             if (Table.Status == TableStatus.Occuppied)
             {
                 timeManager.Tick += TableDetailsViewModel_Tick;
                 TimeSpan ts = timeManager.GetTimeSpanForTable(Table.Number);
-                Table.RemainingTime = ts;
+                if (!timeManager.IsTimerRunning(Table.Number))
+                {
+                    ts = Table.RemainingTime;
+                    timeManager.AddTable(Table, ts);
+                }
+                else
+                {
+                    Table.RemainingTime = ts;
+                }
                 TimerText = ts.ToString("c");
             }
             //Command to delete the table
@@ -125,6 +158,8 @@ namespace SnookerClubApp.Core.View_Model.Page
                 else
                 {
                     Table.Status = TableStatus.Occuppied;
+                    IsInfinite = Table.Hours == 0 && Table.Minutes == 0;
+                    IsOverTime = false;
                     TimeSpan ts = TimeSpan.Parse($"{Table.Hours}:{Table.Minutes}:00");
                     timeManager.AddTable(Table, ts);
                     Table.RemainingTime = ts;
@@ -146,8 +181,27 @@ namespace SnookerClubApp.Core.View_Model.Page
                 ExtraItem newItem = IoC.Get<IDialogBoxManager>().ShowExtrasFormDialogBox();
                 if(newItem != null)
                 {
+                    IoC.Get<RuntimeStorage>().Extras[Table.Number].Add(newItem);
 					ExtraItems.Add(newItem);
 				}
+            });
+            DeleteExtraItemCommand = new RelayParameterizedCommand(item =>
+            {
+                ExtraItem extra = item as ExtraItem;
+                if(extra != null)
+                {
+                    storage.Extras[Table.Number].Remove(extra);
+                    ExtraItems = new ObservableCollection<ExtraItem>(storage.Extras[Table.Number]);
+                }
+            });
+            EditExtraItemCommand = new RelayParameterizedCommand(item =>
+            {
+                ExtraItem extra = item as ExtraItem;
+                if(extra != null)
+                {
+                    IoC.Get<IDialogBoxManager>().ShowExtrasFormDialogBox(extra);
+                    PropertyValueChanged(nameof(ExtraItems));
+                }
             });
         }
 
@@ -160,13 +214,21 @@ namespace SnookerClubApp.Core.View_Model.Page
         {
             if(tableNumber == Table.Number)
             {
-                TimerText = timeSpan.ToString("c");
+                string text = timeSpan.ToString("c");
+                if (text.StartsWith("-") && !IsInfinite)
+                {
+                    IsOverTime = true;
+                    TimerText = text;
+                }
+                else
+                {
+                    TimerText = text.Replace("-", "");
+                }
                 Table.RemainingTime = timeSpan;
                 PropertyValueChanged(nameof(TimerText));
             }
         }
 
         #endregion
-
     }
 }

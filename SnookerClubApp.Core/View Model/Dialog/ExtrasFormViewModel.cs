@@ -75,8 +75,9 @@ namespace SnookerClubApp.Core.View_Model.Dialog
         /// <summary>
         /// Default Constructor
         /// </summary>
-        public ExtrasFormViewModel(Action<ExtraItem> onItemAdded)
+        public ExtrasFormViewModel(Action<ExtraItem> onItemAdded, ExtraItem item)
         {
+            Item = item;
             this.onItemAdded = onItemAdded;
             Initialize();
         }

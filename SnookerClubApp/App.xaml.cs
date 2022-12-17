@@ -1,4 +1,5 @@
 ﻿using SnookerClubApp.Core.Application;
+using SnookerClubApp.Core.Enum;
 using SnookerClubApp.Core.IoCContainer;
 using SnookerClubApp.Core.Managers;
 using SnookerClubApp.Core.View_Model;
@@ -41,8 +42,16 @@ namespace SnookerClubApp
             IoC.RegisterStatic<ApplicationData>(data);
             TimeManager timeManager = new TimeManager();
             timeManager.Start();
+
+            data.Tables.ForEach(t =>
+            {
+                if (t.Status == TableStatus.Occuppied)
+                    timeManager.AddTable(t, t.RemainingTime);
+            });
+
             IoC.RegisterStatic<TimeManager>(timeManager);
             IoC.RegisterStatic<IDialogBoxManager>(new DialogBoxManager());
+            IoC.RegisterStatic<RuntimeStorage>();
         }
 
         protected override void OnExit(ExitEventArgs e)

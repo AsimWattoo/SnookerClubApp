@@ -12,10 +12,10 @@ namespace SnookerClubApp.DialogBoxes
 		/// Shows the extras form to allow the user to enter an extra item
 		/// </summary>
 		/// <returns>An extra item if user selects to add otherwise null</returns>
-		public ExtraItem? ShowExtrasFormDialogBox()
+		public ExtraItem? ShowExtrasFormDialogBox(ExtraItem? item = null)
 		{
 			ExtraItem? newItem = null;
-			ExtrasForm form = new ExtrasForm(new ExtrasFormViewModel(item => newItem = item));
+			ExtrasForm form = new ExtrasForm(new ExtrasFormViewModel(item => newItem = item, item ?? new ExtraItem()));
 			form.ShowDialog();
 			return newItem;
 		}

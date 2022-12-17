@@ -19,7 +19,7 @@ namespace SnookerClubApp.Core.View_Model.Base
         /// Shows a form for extras
         /// </summary>
         /// <returns></returns>
-        ExtraItem ShowExtrasFormDialogBox();
+        ExtraItem ShowExtrasFormDialogBox(ExtraItem item = null);
 
         #endregion
 
