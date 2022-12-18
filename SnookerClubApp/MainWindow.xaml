@@ -53,11 +53,11 @@
                                                 HorizontalAlignment="Left"
                                                 VerticalAlignment="Center">
                                         <TextBlock Text="{Binding Title}"
-                                                   Foreground="#d33834"
+                                                   Foreground="#ff3729"
                                                    FontSize="35"
                                                    FontWeight="Bold"/>
                                         <TextBlock Text="{Binding SubTitle}"
-                                                   Foreground="#d33834"
+                                                   Foreground="#ff3729"
                                                    FontSize="24"
                                                    FontWeight="light"/>
                                     </StackPanel>
@@ -84,7 +84,7 @@
                                                 Command="{Binding CloseCommand}"
                                                 Style="{StaticResource ControlButton}"
                                                 Content="{StaticResource WindowCloseIcon}"
-                                                at:OnMouseEnter.Value="Red"
+                                                at:OnMouseEnter.Value="#ff3729"
                                                 at:OnMouseLeave.Value="white"
                                                 />
 

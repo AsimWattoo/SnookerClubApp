@@ -51,6 +51,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="DialogBoxes\ConfirmationDialogBox.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="DialogBoxes\TotalForm.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="DialogBoxes\ExtrasForm.xaml.cs">
       <SubType>Code</SubType>
     </Compile>

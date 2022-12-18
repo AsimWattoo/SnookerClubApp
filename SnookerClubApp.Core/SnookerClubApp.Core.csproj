@@ -65,6 +65,8 @@
     <Compile Include="View Model\Base\IDialogBoxManager.cs" />
     <Compile Include="View Model\Base\RelayParameterizedCommand.cs" />
     <Compile Include="View Model\Base\RelayCommand.cs" />
+    <Compile Include="View Model\Dialog\ConfirmationDialogBoxViewModel.cs" />
+    <Compile Include="View Model\Dialog\ConfirmationDialogBoxViewModel.cs" />
     <Compile Include="View Model\Dialog\WeeklyTableDetailsItem.cs" />
     <Compile Include="View Model\Dialog\ExtrasFormViewModel.cs" />
     <Compile Include="View Model\Dialog\WeeklyTableDetailsViewModel.cs" />

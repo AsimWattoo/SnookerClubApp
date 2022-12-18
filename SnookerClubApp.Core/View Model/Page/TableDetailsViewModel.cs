@@ -25,7 +25,7 @@ namespace SnookerClubApp.Core.View_Model.Page
         /// <summary>
         /// The timeSpan which the timer has
         /// </summary>
-        private TimeSpan timeSpan;
+        private TimeSpan allocatedTime;
 
         #endregion
 
@@ -144,7 +144,18 @@ namespace SnookerClubApp.Core.View_Model.Page
             //Command to delete the table
             DeleteCommand = new RelayCommand(() =>
             {
-
+                bool result = IoC.Get<IDialogBoxManager>().ShowConfirmationDialogBox("Table Delete Confirmation", "Are you sure you want to delete the table?");
+                if (result)
+                {
+                    //Stopping the timer it the timer is running
+                    timeManager.RemoveTable(Table.Number);
+                    //Removing the table from the tables
+                    IoC.Get<ApplicationData>().Tables.Remove(Table);
+                    //Removing any extras for the table
+                    IoC.Get<RuntimeStorage>().Extras.Remove(Table.Number);
+                    //Moving to the previous page
+                    IoC.Get<ApplicationViewModel>().ChangePage(ApplicationPages.Home);
+                }
             });
             //Command to start and stop the timer
             PlayCommand = new RelayCommand(() =>
@@ -154,6 +165,8 @@ namespace SnookerClubApp.Core.View_Model.Page
                     Table.Status = TableStatus.Free;
                     timeManager.RemoveTable(Table.Number);
                     timeManager.Tick -= TableDetailsViewModel_Tick;
+                    //Showing the total form
+                    IoC.Get<IDialogBoxManager>().ShowTotalForm(Table, storage.Extras[Table.Number], Table.RemainingTime, allocatedTime, IsInfinite);
                 }
                 else
                 {
@@ -161,6 +174,7 @@ namespace SnookerClubApp.Core.View_Model.Page
                     IsInfinite = Table.Hours == 0 && Table.Minutes == 0;
                     IsOverTime = false;
                     TimeSpan ts = TimeSpan.Parse($"{Table.Hours}:{Table.Minutes}:00");
+                    allocatedTime = ts;
                     timeManager.AddTable(Table, ts);
                     Table.RemainingTime = ts;
                     TimerText = ts.ToString("c");
@@ -199,8 +213,22 @@ namespace SnookerClubApp.Core.View_Model.Page
                 ExtraItem extra = item as ExtraItem;
                 if(extra != null)
                 {
-                    IoC.Get<IDialogBoxManager>().ShowExtrasFormDialogBox(extra);
-                    PropertyValueChanged(nameof(ExtraItems));
+                    ExtraItem copy = new ExtraItem()
+                    {
+                        Name = extra.Name,
+                        Price = extra.Price,
+                    };
+                    ExtraItem newItem = IoC.Get<IDialogBoxManager>().ShowExtrasFormDialogBox(copy);
+                    if(newItem != null)
+                    {
+                        extra.Name = newItem.Name;
+                        extra.Price = newItem.Price;
+                        int index = storage.Extras[Table.Number].IndexOf(extra);
+                        storage.Extras[Table.Number].Remove(extra);
+                        storage.Extras[Table.Number].Insert(index, extra);
+                        ExtraItems = new ObservableCollection<ExtraItem>(storage.Extras[Table.Number]);
+                        PropertyValueChanged(nameof(ExtraItems));
+                    }
                 }
             });
         }

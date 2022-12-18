@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 D:\Work\Programming\Visual Studio 2022\C#\.Net Framework\WPF\SnookerClubApp\SnookerClubApp\App.xaml
-141869158677
+161247386327
 
-361830670467
+38-2003852297
 1971699333211
-Controls\Navigator.xaml;Controls\NumberInput.xaml;Controls\Shared\TableDisplay.xaml;Controls\TopBar.xaml;DialogBoxes\ExtrasForm.xaml;DialogBoxes\WeeklyTableDetails.xaml;MainWindow.xaml;Pages\DefaultPage.xaml;Pages\Home.xaml;Pages\TableDetails.xaml;Styles\Buttons.xaml;Styles\Colors.xaml;Styles\Fonts.xaml;Styles\Texts.xaml;
+Controls\Navigator.xaml;Controls\NumberInput.xaml;Controls\Shared\TableDisplay.xaml;Controls\TopBar.xaml;DialogBoxes\ConfirmationDialogBox.xaml;DialogBoxes\ExtrasForm.xaml;DialogBoxes\TotalForm.xaml;DialogBoxes\WeeklyTableDetails.xaml;MainWindow.xaml;Pages\DefaultPage.xaml;Pages\Home.xaml;Pages\TableDetails.xaml;Styles\Buttons.xaml;Styles\Colors.xaml;Styles\Fonts.xaml;Styles\Texts.xaml;
 
 True
 
