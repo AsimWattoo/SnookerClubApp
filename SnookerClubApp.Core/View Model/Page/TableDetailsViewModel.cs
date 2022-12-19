@@ -122,7 +122,7 @@ namespace SnookerClubApp.Core.View_Model.Page
         private void Initialize()
         {
             TimeManager timeManager = IoC.Get<TimeManager>();
-            RuntimeStorage storage = IoC.Get<RuntimeStorage>();
+            ApplicationData storage = IoC.Get<ApplicationData>();
             if (!storage.Extras.ContainsKey(Table.Number))
                 storage.Extras.Add(Table.Number, new List<ExtraItem>());
             ExtraItems = new ObservableCollection<ExtraItem>(storage.Extras[Table.Number]);
@@ -133,10 +133,12 @@ namespace SnookerClubApp.Core.View_Model.Page
                 if (!timeManager.IsTimerRunning(Table.Number))
                 {
                     ts = Table.RemainingTime;
+                    allocatedTime = TimeSpan.Parse($"{Table.Hours}:{Table.Minutes}:00");
                     timeManager.AddTable(Table, ts);
                 }
                 else
                 {
+                    allocatedTime = TimeSpan.Parse($"{Table.Hours}:{Table.Minutes}:00");
                     Table.RemainingTime = ts;
                 }
                 TimerText = ts.ToString("c");
@@ -152,7 +154,7 @@ namespace SnookerClubApp.Core.View_Model.Page
                     //Removing the table from the tables
                     IoC.Get<ApplicationData>().Tables.Remove(Table);
                     //Removing any extras for the table
-                    IoC.Get<RuntimeStorage>().Extras.Remove(Table.Number);
+                    IoC.Get<ApplicationData>().Extras.Remove(Table.Number);
                     //Moving to the previous page
                     IoC.Get<ApplicationViewModel>().ChangePage(ApplicationPages.Home);
                 }
@@ -195,7 +197,7 @@ namespace SnookerClubApp.Core.View_Model.Page
                 ExtraItem newItem = IoC.Get<IDialogBoxManager>().ShowExtrasFormDialogBox();
                 if(newItem != null)
                 {
-                    IoC.Get<RuntimeStorage>().Extras[Table.Number].Add(newItem);
+                    IoC.Get<ApplicationData>().Extras[Table.Number].Add(newItem);
 					ExtraItems.Add(newItem);
 				}
             });

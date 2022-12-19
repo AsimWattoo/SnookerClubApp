@@ -3,9 +3,6 @@ using SnookerClubApp.Core.View_Model.Item;
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace SnookerClubApp.Core.View_Model.Dialog
@@ -116,7 +113,7 @@ namespace SnookerClubApp.Core.View_Model.Dialog
                 }
             }
             else
-                TotalTime = remainingTime;
+                TotalTime = remainingTime.Negate();
             //Calculating total cost
             Total = 0;
             extras.ForEach(f => Total += f.Price);
