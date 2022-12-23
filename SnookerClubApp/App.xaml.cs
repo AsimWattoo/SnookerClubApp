@@ -2,10 +2,13 @@
 using SnookerClubApp.Core.Enum;
 using SnookerClubApp.Core.IoCContainer;
 using SnookerClubApp.Core.Managers;
+using SnookerClubApp.Core.Managers.Interface;
 using SnookerClubApp.Core.View_Model;
 using SnookerClubApp.Core.View_Model.Base;
 using SnookerClubApp.DialogBoxes;
+using SnookerClubApp.Managers;
 
+using System.Collections.Generic;
 using System.Windows;
 
 namespace SnookerClubApp
@@ -41,17 +44,32 @@ namespace SnookerClubApp
                 data = new ApplicationData();
             IoC.RegisterStatic<ApplicationData>(data);
             TimeManager timeManager = new TimeManager();
+            timeManager.TableOvertime += TimeManager_TableOvertime;
             timeManager.Start();
 
             data.Tables.ForEach(t =>
             {
                 if (t.Status == TableStatus.Occuppied)
-                    timeManager.AddTable(t, t.RemainingTime);
+                    timeManager.AddTable(t.Number, t.RemainingTime);
             });
 
             IoC.RegisterStatic<TimeManager>(timeManager);
             IoC.RegisterStatic<IDialogBoxManager>(new DialogBoxManager());
             IoC.RegisterStatic<RuntimeStorage>();
+            AudioManager audioManager = new AudioManager(new Dictionary<AudioSound, string>()
+            {
+                [AudioSound.Overtime] = "Data/Audios/service-bell.wav"
+            });
+            IoC.RegisterStatic<IAudioManager>(audioManager);
+        }
+
+        /// <summary>
+        /// Fires when the table is overtimed
+        /// </summary>
+        /// <param name="tableNumber">The table which has overtimed</param>
+        private void TimeManager_TableOvertime(int tableNumber)
+        {
+            this.Dispatcher.Invoke(() => IoC.Get<IDialogBoxManager>().ShowPopup($"Table {tableNumber} has reached the time limit", asDialog: false));
         }
 
         protected override void OnExit(ExitEventArgs e)

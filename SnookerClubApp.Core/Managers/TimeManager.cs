@@ -1,4 +1,8 @@
-﻿using SnookerClubApp.Core.View_Model;
+﻿using SnookerClubApp.Core.Enum;
+using SnookerClubApp.Core.IoCContainer;
+using SnookerClubApp.Core.Managers.Interface;
+using SnookerClubApp.Core.View_Model;
+using SnookerClubApp.Core.View_Model.Base;
 
 using System;
 using System.Collections.Generic;
@@ -18,6 +22,11 @@ namespace SnookerClubApp.Core.Managers
         /// The timer tick event
         /// </summary>
         public event Action<int, TimeSpan> Tick;
+
+        /// <summary>
+        /// The event which will be fired when the table overtimes
+        /// </summary>
+        public event Action<int> TableOvertime;
 
         #endregion
 
@@ -39,9 +48,24 @@ namespace SnookerClubApp.Core.Managers
         private Dictionary<int, TimeSpan> Tables { get; set; } = new Dictionary<int, TimeSpan>();
 
         /// <summary>
+        /// The data of all the tables added in the TimeManager
+        /// </summary>
+        private Dictionary<int, TimeSpan> TablesData { get; set; } = new Dictionary<int, TimeSpan>();
+
+        /// <summary>
+        /// Indicates that the table has been overtimed
+        /// </summary>
+        private Dictionary<int, bool> Overtimed { get; set; } = new Dictionary<int, bool>();
+
+        /// <summary>
         /// Indictaes the current state of the timer
         /// </summary>
         private bool _isRunning = false;
+
+        /// <summary>
+        /// The timespan to decrease the timer
+        /// </summary>
+        private TimeSpan _ts = TimeSpan.FromSeconds(1);
 
         #endregion
 
@@ -68,9 +92,13 @@ namespace SnookerClubApp.Core.Managers
         /// <summary>
         /// Adds table to the timer
         /// </summary>
-        public void AddTable(Table t, TimeSpan time)
+        /// <param name="tableNumber">The number of the table for which this is being setup</param>
+        /// <param name="time">The time for thish it should run</param>
+        public void AddTable(int tableNumber, TimeSpan time)
         {
-            Tables.Add(t.Number, time);
+            Tables.Add(tableNumber, time);
+            TablesData.Add(tableNumber, new TimeSpan(time.Ticks));
+            Overtimed.Add(tableNumber, false);
         }
 
         /// <summary>
@@ -80,6 +108,8 @@ namespace SnookerClubApp.Core.Managers
         public void RemoveTable(int t)
         {
             Tables.Remove(t);
+            TablesData.Remove(t);
+            Overtimed.Remove(t);
         }
 
         /// <summary>
@@ -138,10 +168,20 @@ namespace SnookerClubApp.Core.Managers
         /// <param name="e"></param>
         private void Timer_Elapsed(object sender, ElapsedEventArgs e)
         {
-            TimeSpan ts = TimeSpan.FromSeconds(1);
             foreach (int t in Tables.Keys)
             {
-                Tables[t] = Tables[t].Subtract(ts);
+                Tables[t] = Tables[t].Subtract(_ts);
+                //Checking if the timer is not running infinitely for a table
+                //If not then check for overtime
+                if (TablesData[t] != TimeSpan.Zero)
+                {
+                    if (Tables[t] <= TimeSpan.Zero && !Overtimed[t])
+                    {
+                        Overtimed[t] = true;
+                        IoC.Get<IAudioManager>().Play(AudioSound.Overtime);
+                        TableOvertime?.Invoke(t);
+                    }
+                }
                 //Firing the event to let the listeners know
                 Tick?.Invoke(t, Tables[t]);
             }

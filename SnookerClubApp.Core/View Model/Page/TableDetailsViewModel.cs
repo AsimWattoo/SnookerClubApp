@@ -1,9 +1,8 @@
-﻿using Microsoft.SqlServer.Server;
-
-using SnookerClubApp.Core.Application;
+﻿using SnookerClubApp.Core.Application;
 using SnookerClubApp.Core.Enum;
 using SnookerClubApp.Core.IoCContainer;
 using SnookerClubApp.Core.Managers;
+using SnookerClubApp.Core.Managers.Interface;
 using SnookerClubApp.Core.View_Model.Base;
 using SnookerClubApp.Core.View_Model.Dialog;
 using SnookerClubApp.Core.View_Model.Item;
@@ -11,8 +10,6 @@ using SnookerClubApp.Core.View_Model.Item;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Data;
-using System.Timers;
 using System.Windows.Input;
 
 namespace SnookerClubApp.Core.View_Model.Page
@@ -134,7 +131,7 @@ namespace SnookerClubApp.Core.View_Model.Page
                 {
                     ts = Table.RemainingTime;
                     allocatedTime = TimeSpan.Parse($"{Table.Hours}:{Table.Minutes}:00");
-                    timeManager.AddTable(Table, ts);
+                    timeManager.AddTable(Table.Number, ts);
                 }
                 else
                 {
@@ -177,7 +174,7 @@ namespace SnookerClubApp.Core.View_Model.Page
                     IsOverTime = false;
                     TimeSpan ts = TimeSpan.Parse($"{Table.Hours}:{Table.Minutes}:00");
                     allocatedTime = ts;
-                    timeManager.AddTable(Table, ts);
+                    timeManager.AddTable(Table.Number, ts);
                     Table.RemainingTime = ts;
                     TimerText = ts.ToString("c");
                     timeManager.Tick += TableDetailsViewModel_Tick;

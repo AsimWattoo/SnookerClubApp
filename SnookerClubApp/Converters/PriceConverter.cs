@@ -12,7 +12,8 @@ namespace SnookerClubApp.Converters
         {
             if (value is double d)
             {
-                return parameter == null ? $"£{d}/hr" : $"£{d}";
+                d = Math.Round(d, 2);
+                return parameter == null ? string.Format("£{0:0.00#}/hr", d) : string.Format("£{0:0.00#}", d);
 			}
             else
             {

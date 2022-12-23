@@ -40,6 +40,20 @@ namespace SnookerClubApp.DialogBoxes
 		}
 
         /// <summary>
+        /// Shows the popup box
+        /// </summary>
+        /// <param name="message">The message to be displayed</param>
+        /// <param name="asDialog">Tells whether to show the popup as dialog or not</param>
+        public void ShowPopup(string message, bool asDialog = true)
+        {
+            PopupBox popupBox = new PopupBox(new PopupDialogBoxViewModel(message));
+            if (asDialog)
+                popupBox.ShowDialog();
+            else
+                popupBox.Show();
+        }
+
+        /// <summary>
         /// Shows the total form with a close button
         /// </summary>
         /// <param name="t">The table for which total form is to be shown</param>

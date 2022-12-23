@@ -55,7 +55,7 @@ namespace SnookerClubApp {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/SnookerClubApp;component/pages/tabledetails.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/SnookerClubApp;V1.0.0.0;component/pages/tabledetails.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Pages\TableDetails.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

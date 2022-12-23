@@ -54,7 +54,7 @@ namespace SnookerClubApp {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/SnookerClubApp;component/dialogboxes/confirmationdialogbox.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/SnookerClubApp;V1.0.0.0;component/dialogboxes/confirmationdialogbox.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\DialogBoxes\ConfirmationDialogBox.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

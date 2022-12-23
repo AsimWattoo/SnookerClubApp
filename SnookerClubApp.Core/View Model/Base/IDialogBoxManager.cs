@@ -40,6 +40,13 @@ namespace SnookerClubApp.Core.View_Model.Base
         /// <param name="isInfinite">Tells whether the timer is running in infinite mode</param>
         void ShowTotalForm(Table t, List<ExtraItem> extras, TimeSpan totalTime, TimeSpan allocatedTime, bool isInfinite);
 
+        /// <summary>
+        /// Shows the popup box with the specified message
+        /// </summary>
+        /// <param name="message">The message to be displayed in the popup box</param>
+        /// <param name="asDialog">Tells whether to show the popup as a dialog or not</param>
+        void ShowPopup(string message, bool asDialog = true);
+
         #endregion
 
     }

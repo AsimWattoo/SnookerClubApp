@@ -174,7 +174,7 @@ namespace SnookerClubApp
         /// <param name="e"></param>
         private void TextBox_KeyDown(object sender, KeyEventArgs e)
         {
-            if ((e.Key < Key.D0 || e.Key > Key.D9) && (e.Key < Key.NumPad0 || e.Key > Key.NumPad9) && e.Key != Key.Decimal)
+            if ((e.Key < Key.D0 || e.Key > Key.D9) && (e.Key < Key.NumPad0 || e.Key > Key.NumPad9) && e.Key != Key.Decimal && e.Key != Key.OemPeriod)
                 e.Handled = true;
 
         }
