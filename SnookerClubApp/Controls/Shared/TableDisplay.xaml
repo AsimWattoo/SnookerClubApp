@@ -61,6 +61,7 @@
                 <RowDefinition Height="2*"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
             <StackPanel Orientation="Horizontal"
@@ -92,6 +93,7 @@
                 </Border.Background>
                 <TextBlock Text="{Binding Status}" FontSize="20" Foreground="{Binding Status, Converter={converter:TableStatusToBrushConverter}}"/>
             </Border>
+
         </Grid>
     </Grid>
 </UserControl>

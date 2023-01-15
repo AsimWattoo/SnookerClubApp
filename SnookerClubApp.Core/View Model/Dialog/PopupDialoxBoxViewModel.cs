@@ -1,5 +1,4 @@
 ﻿using SnookerClubApp.Core.View_Model.Base;
-using SnookerClubApp.Core.View_Model.Item;
 
 using System;
 using System.Windows.Input;

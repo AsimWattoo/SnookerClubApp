@@ -1,5 +1,4 @@
 ﻿using SnookerClubApp.Core.View_Model.Dialog;
-
 using System.Windows;
 
 namespace SnookerClubApp

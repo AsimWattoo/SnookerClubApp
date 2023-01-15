@@ -1,12 +1,9 @@
-﻿using SnookerClubApp.Core.Application;
-using SnookerClubApp.Core.Enum;
-using SnookerClubApp.Core.IoCContainer;
+﻿using SnookerClubApp.Core.IoCContainer;
+using SnookerClubApp.Core.Managers;
 using SnookerClubApp.Core.View_Model.Base;
 
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Security.Cryptography;
 using System.Windows.Input;
 
 namespace SnookerClubApp.Core.View_Model.Page
